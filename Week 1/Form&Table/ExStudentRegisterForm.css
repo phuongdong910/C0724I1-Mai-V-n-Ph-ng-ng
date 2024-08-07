@@ -1,0 +1,17 @@
+div {
+    background-color: #ffe280;
+
+    width: 1500px;
+    height: 1000px;
+    padding: 15px;
+}
+h1 {
+    color: blue;
+}
+span {
+    color: blue;
+    font-size: 30px;
+}
+div input {
+    margin-left: 100px;
+}

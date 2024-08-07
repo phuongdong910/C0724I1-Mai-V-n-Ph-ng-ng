@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+
+    width: 1200px;
+
+    margin-left: 150px;
+
+
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+h1{
+    color: blue;
+    text-align: center;
+}
+
+div {
+    margin-left: 200px;
+    margin-bottom: 10px;
+}
+
+.away {
+margin-left: 800px;
+}
+.my-yl{
+    background-color: yellow;
+}
+
+.my-ora {
+    background-color: orange;
+}
+
+.my-toma{
+    background-color: tomato;
+}

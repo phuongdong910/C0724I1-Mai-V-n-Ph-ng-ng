@@ -1,0 +1,24 @@
+div {
+    margin: 70px 70px;
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 800px;
+    height: 400px;
+}
+th,  td {
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+th{
+    background-color: tomato;
+    color: white;
+}
+td{
+    color: #968787;
+}
+
