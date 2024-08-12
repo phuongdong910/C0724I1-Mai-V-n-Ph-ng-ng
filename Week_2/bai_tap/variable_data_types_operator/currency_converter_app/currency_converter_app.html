@@ -10,7 +10,7 @@
             border-spacing: 20px;
         }
 
-        button{
+        button {
             background-color: aqua;
         }
 
@@ -26,25 +26,27 @@
         <th></th>
     </tr>
     <tr>
-        <td><input type="text" id="Amount"></td>
+        <td><input type="text" id="amount"></td>
         <td>
-            <select  name ="From" id="From">
+            <select name="from" id="from">
                 <option name="VND" value="VND">VND</option>
-                <option name=" USD"  value="USD">USD</option>
+                <option name=" USD" value="USD">USD</option>
             </select>
         </td>
         <td>
-            <select id="To">
+            <select id="to">
                 <option value="VND">VND</option>
-                <option  value="USD">USD</option>
+                <option value="USD">USD</option>
             </select>
         </td>
-        <td><button onclick="ChangeMoney()">Convert</button></td>
+        <td>
+            <button onclick="changeMoney()">Convert</button>
+        </td>
     </tr>
 </table>
 
 <br>
-<p id="Result"></p>
+<p id="result"></p>
 
 <script src="currency_converter_app.js"></script>
 
