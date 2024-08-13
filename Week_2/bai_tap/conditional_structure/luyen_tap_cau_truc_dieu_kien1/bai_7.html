@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính cước điện thoại cho một hộ gia đình</title>
+</head>
+<body>
+<input id="minutesUsed" type="text" placeholder="Enter minutes">
+<select id="billPhone">
+    <option value="inCity" id="inCity">In city</option>
+    <option value="outOfCity" id="outOfCity">Out of city</option>
+    <option value="international" id="international">International</option>
+</select>
+<button type="button" onclick="billPhoneMonth()">Click Me!</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+    function billPhoneMonth()  {
+        let minutesUsed = document.getElementById("minutesUsed").value;
+        let billPhone = document.getElementById("billPhone").value;
+        let result;
+
+        if (billPhone === "inCity") {
+            result = minutesUsed * 100;
+        } else if (billPhone === "outOfCity") {
+            result = minutesUsed * 200;
+        } else {
+            result = minutesUsed * 500;
+        }
+        document.getElementById("result").innerHTML= "Bill phone is " +result;
+
+    }
+
+
+
+
+</script>
+</body>
+</html>

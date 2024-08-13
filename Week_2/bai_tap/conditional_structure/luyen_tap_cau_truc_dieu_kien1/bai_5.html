@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xếp hạng học lực của học sinh </title>
+</head>
+<body>
+
+
+<script>
+    let diemKiemTra = parseFloat(prompt("Nhập điểm kiểm tra"));
+    let diemThiGiuaKy =  parseFloat(prompt("Nhập điểm thi giữa kỳ"));
+    let diemThiCuoiKy = parseFloat(prompt("Nhập điểm thi cuối kỳ"));
+
+    let dtb = (diemKiemTra + (diemThiGiuaKy * 2) + (diemThiCuoiKy * 4)) / 7;
+
+    if (dtb >=9) {
+        alert("Xếp hạng HS xuất sắc");
+    }else if(dtb >= 8){
+        alert("Xếp hạng HS giỏi");
+    }else if(dtb >= 6.5) {
+        alert("Xếp hạng HS khá");
+    }else if (dtb >= 5) {
+        alert("Xếp hạng HS trung bình");
+    }else {
+        alert("Xếp hạng HS yếu");
+    }
+
+
+</script>
+
+</body>
+</html>
