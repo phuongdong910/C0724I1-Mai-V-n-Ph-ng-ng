@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prime number</title>
+</head>
+<body>
+<script>
+
+    let  number = parseInt(prompt("Enter n first prime number"));
+    checkPrimeNumber(number);
+
+    function checkPrimeNumber(number) {
+        let countDivisor = 0; // Đếm số  ước của số đang xét
+        let countPrimeNumber = 0; // Đếm đủ số lượng số nguyen to chưa
+
+        for (let i = 2; i < 10000; i++) { // 2, 3, 4, ....10000
+            if (countPrimeNumber < number) { // so luong so nguyen to nhỏ hơn number nhập vào
+                for (j = 1; j <= i; j++) {
+                    if (i % j === 0) {
+                        countDivisor += 1;
+                    }
+                }
+                if (countDivisor === 2) {
+                    document.write(i + " is prime number " + "<br>");
+                    countPrimeNumber += 1;
+                }
+                countDivisor = 0;
+
+            }else {
+                break;
+            }
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>
