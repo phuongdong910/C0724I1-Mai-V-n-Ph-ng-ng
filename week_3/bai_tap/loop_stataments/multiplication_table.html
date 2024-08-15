@@ -5,12 +5,7 @@
     <title>Multiplication table</title>
 
     <style>
-        table {
-            border: 1px;
-            cellspacing: 0;
-            cellpadding: 15px;
 
-        }
     </style>
 </head>
 <body>
@@ -21,14 +16,13 @@
 <script>
     let i;
     let j;
-    let multip = "<table border='1px' cellspacing='0px' width='500px' cellpadding='20px'>";
+    let multip = "<table border='2px' cellspacing='0px' width='500px' cellpadding='20px'>";
     for (i = 1; i <= 10; i++) {
         multip = multip + "<tr>";
         for (j = 1; j <= 10; j++) {
             multip = multip + "<td>" + j + "*" + i + "=" + i * j + "</td>";
         }
         multip = multip + "</tr>";
-        // j = 1;
     }
     multip = multip + "</table>";
     document.write(multip);
