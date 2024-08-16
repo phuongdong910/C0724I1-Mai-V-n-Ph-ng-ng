@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prink rectangular</title>
+</head>
+<body>
+
+<script>
+
+    let heightRectan = parseInt(prompt("Enter height Rectangular"));
+    let widthRectan =  parseInt(prompt("Enter width Rectangular"));
+
+    for (let i = 1; i <= heightRectan; i++) {  // Vòng lặp quản lý số dòng
+        let row = '';  // Khởi tạo chuỗi rỗng để lưu các ký tự của dòng hiện tại
+
+        for (let j = 1; j <= widthRectan; j++) {  // Vòng lặp quản lý số ký tự trong mỗi dòng
+            // Kiểm tra nếu đang ở dòng đầu tiên, dòng cuối cùng, hoặc cột đầu tiên, cột cuối cùng
+            if (i === 1 || i === heightRectan || j === 1 || j === widthRectan) {
+                row += '*';  // In dấu * nếu là viền ngoài
+            } else {
+                row += ' ';  // In dấu khoảng trắng nếu là bên trong
+            }
+        }
+
+        console.log(row);
+    }
+    </script>
+</body>
+</html>

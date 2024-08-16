@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate the sum of the first 20 numbers in the fibonacci sequence.</title>
+</head>
+<body>
+
+<script>
+    let fi1 = 0;
+    let fi2 = 1;
+    let fi;
+
+
+    let sum = fi1 + fi2;
+
+
+    for (let i = 0; i < 18; i++) {
+         fi = fi1 + fi2;
+        sum += fi;
+
+
+        fi1 = fi2;
+        fi2 = fi;
+
+    }
+    document.write(sum);
+
+</script>
+</body>
+</html>

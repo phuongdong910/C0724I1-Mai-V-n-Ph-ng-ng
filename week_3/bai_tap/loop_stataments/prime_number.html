@@ -21,11 +21,11 @@
                         countDivisor += 1;
                     }
                 }
-                if (countDivisor === 2) {
+                if (countDivisor === 2) {   // thỏa mãn điều kiện là so nguyên tố
                     document.write(i + " is prime number " + "<br>");
-                    countPrimeNumber += 1;
+                    countPrimeNumber += 1;   // cộng thêm vào tổng so luong số nguyên tố
                 }
-                countDivisor = 0;
+                countDivisor = 0;          // ước trở lại bằng 0 để tính lại.
 
             }else {
                 break;
@@ -33,6 +33,23 @@
         }
 
     }
+
+    //
+
+    let num = parseInt(prompt("Enter number"));
+
+    function Checknumber(num) {
+
+        for ( i = 2; i <= num; i++) {
+            if ( num % i ===0) {
+                break;
+            }
+
+        } document.write(num + " is prime number " + "<br>")
+
+
+    }
+
 
 
 

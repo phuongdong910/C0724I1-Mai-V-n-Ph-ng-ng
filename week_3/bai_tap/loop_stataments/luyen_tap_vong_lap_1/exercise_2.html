@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Get temperature information and adjust temperature</title>
+</head>
+<body>
+
+<script>
+
+    // let c = +prompt("Enter the temperature");
+    //
+    // if (c > 100) {
+    //     alert("Reduce temperature");
+    // }else if (c < 20){
+    //     alert("Increase temperature");
+    // }else {
+    //     alert("Ok");
+    // }
+    //
+    //
+
+    let temperature = +(prompt("Nhập nhiệt độ hiện tại:"));
+
+    while (temperature > 100 || temperature < 20) {
+        if (temperature > 100) {
+            temperature = +(prompt("Nhiệt độ quá cao! Vui lòng giảm nhiệt độ xuống dưới 100."));
+        } else if (temperature < 20) {
+            temperature = +(prompt("Nhiệt độ quá thấp! Vui lòng tăng nhiệt độ lên trên 20."));
+        }
+    }
+
+    alert("Nhiệt độ đã được điều chỉnh hợp lý: " + temperature + "°C");
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display the first 20 numbers in the fibonacci sequence.</title>
+</head>
+<body>
+
+
+<script>
+   let fi1 = 0;
+   let fi2 = 1;
+   document.write(fi1 + "<br>");
+   document.write(fi2 +"<br>");
+
+
+   for (let i = 0; i < 18; i++) {
+       fi = fi1 + fi2;
+       document.write(fi +"<br>");
+       fi1 = fi2;
+       fi2 = fi;
+   }
+
+
+
+
+</script>
+
+</body>
+</html>
