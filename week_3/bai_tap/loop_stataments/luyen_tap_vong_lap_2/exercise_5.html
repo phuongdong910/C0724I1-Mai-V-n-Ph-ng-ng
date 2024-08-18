@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculate bank compound interest</title>
+    <title>Tính lãi ngân hàng</title>
 </head>
 <body>
 
 <script>
-    let fisrtMoney
+    let soTien = +prompt("nhập tiền vay");
+    let soThang = +prompt("nhập vào số tháng");
+    let sotienNo = soTien
+    for (let i = 1; i <= soThang; i++) {
+        let tienLai = soTien * 0.05;
+        soTien += tienLai;
+        sotienNo += tienLai;
+    }
+
+    document.write("tiền phải trả :" + tienNo);
 </script>
 </body>
 </html>

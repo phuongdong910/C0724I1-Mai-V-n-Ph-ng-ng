@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Vẽ trái tim</title>
+</head>
+<body>
+<script>
+    let number = +prompt("Nhập trái tim rộng bao nhiêu:");
+
+
+    let heart = '';
+    for (let i = number / 2; i < number; i += 2) {
+        for (let j = 1; j < number - i; j += 2) {
+            heart += ' ';
+        }
+        for (let j = 1; j < i + 1; j++) {
+            heart += '*';
+        }
+        for (let j = 1; j < number - i + 1; j++) {
+            heart += ' ';
+        }
+        for (let j = 1; j < i + 1; j++) {
+            heart += '*';
+        }
+        heart += '\n';
+    }
+    for (let i = number; i >= 1; i--) {
+        for (let j = i; j < number; j++) {
+            heart += ' ';
+        }
+        for (let j = 1; j <= (i * 2) - 1; j++) {
+            heart += '*';
+        }
+        heart += '\n';
+    }
+    document.write("<pre> "+ heart +" </pre>");
+
+
+</script>
+</body>
+</html>

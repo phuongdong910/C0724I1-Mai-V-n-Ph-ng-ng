@@ -8,30 +8,54 @@
 
 
 <script>
+    let height1 = 5; // Chiều cao của tam giác (số dòng)
+
+    for (let i = 1; i <= height1; i++) { // Vòng lặp quản lý số dòng
+        let row = ''; // Khởi tạo một chuỗi rỗng để lưu các dấu *
+        for (let j = 1; j <= i; j++) { // Vòng lặp in dấu * theo số dòng hiện tại
+            row += '*'; // Thêm dấu * vào chuỗi row
+        }
+        document.write(row + "</br>" );
+    }
+
+
+
+    //
+
     // let height = 5; // Chiều cao của tam giác (số dòng)
     //
     // for (let i = 1; i <= height; i++) { // Vòng lặp quản lý số dòng
     //     let row = ''; // Khởi tạo một chuỗi rỗng để lưu các dấu *
-    //     for (let j = 1; j <= i; j++) { // Vòng lặp in dấu * theo số dòng hiện tại
+    //     for (let j = 5; j >= i; j--) { // Vòng lặp in dấu * theo số dòng hiện tại
     //         row += '*'; // Thêm dấu * vào chuỗi row
     //     }
-    //     document.write(row + "</br>");
+    //     document.write(row + "</br>" );
     // }
-    //
 
-
-    //
-
-    let height = 5; // Chiều cao của tam giác (số dòng)
-
-    for (let i = 1; i <= height; i++) { // Vòng lặp quản lý số dòng
-        let row = ''; // Khởi tạo một chuỗi rỗng để lưu các dấu *
-        for (let j = 5; j >= i; j--) { // Vòng lặp in dấu * theo số dòng hiện tại
-            row += '*'; // Thêm dấu * vào chuỗi row
+    let triangle = '';
+    for (let i = 1; i <= 10; i++) {
+        for (let j = 1; j <= 10 - i; j++) {
+            triangle += ' ';
         }
-        document.write(row + "</br>");
+        for (let k = 1; k <= i; k++) {
+            triangle += '*';
+        }
+        triangle += '<br>';
     }
+    document.write("<pre>"+triangle +"</pre>");
 
+    let triangle4 = "";
+    for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <=9; j++) {
+            if (i === 1 || j === 9 || j >= i) {
+                triangle4 += "*";
+            } else {
+                triangle4 += " ";
+            }
+        }
+        triangle4 += "<br>";
+    }
+    document.write("<pre>" + triangle4 + "</pre>");
 
 </script>
 </body>
