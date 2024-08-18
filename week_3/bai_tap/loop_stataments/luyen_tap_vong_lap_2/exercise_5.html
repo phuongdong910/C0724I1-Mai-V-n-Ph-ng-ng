@@ -9,14 +9,14 @@
 <script>
     let soTien = +prompt("nhập tiền vay");
     let soThang = +prompt("nhập vào số tháng");
-    let sotienNo = soTien
+    let soTienNo = soTien
     for (let i = 1; i <= soThang; i++) {
-        let tienLai = soTien * 0.05;
+        let tienLai = soTien * 0.01;
         soTien += tienLai;
-        sotienNo += tienLai;
+        soTienNo += tienLai;
     }
 
-    document.write("tiền phải trả :" + tienNo);
+    document.write("tiền phải trả :" + soTienNo);
 </script>
 </body>
 </html>

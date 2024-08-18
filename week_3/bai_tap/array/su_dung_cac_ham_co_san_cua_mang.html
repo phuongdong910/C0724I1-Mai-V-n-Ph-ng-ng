@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find value in array</title>
+</head>
+<body>
+
+<script>
+
+    // nối tất cả các phần tử trong một mảng chuỗi lại với nhau
+
+    // myColor = ["Red", "Green", "White", "Black"];
+    //
+    // document.write(myColor.toString());
+    // document.write(myColor.join());
+    // document.write(myColor.join("+"));
+
+    //chương trình nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn.
+
+    let num = window.prompt();
+    let str = num.toString();
+    let result = [str[0]];
+    for (let x = 1; x < str.length; x++) {
+        if (str[x - 1] % 2 === 0 && str[x] % 2) {
+            result.push("-", str[x]);
+
+        } else {
+            result.push(str[x]);
+        }
+    }
+    document.write(result.join(""));
+
+
+</script>
+</body>
+</html>

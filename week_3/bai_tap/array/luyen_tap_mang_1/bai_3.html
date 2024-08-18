@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Khởi tạo mảng số nguyên</title>
+</head>
+<body>
+
+<script>
+
+    // Hiển hiện giá trị lớn nhất trong mảng đó. In ra giá trị trung bình của các phần tử trong mảng.
+
+    let arr = [5, 17, 8, 22, 10, 2, 18, 7, 13, 12];
+
+    let maxValue = arr[0]; //Giả sử  phần tử đầu tiên là lớn nhất
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > maxValue) {
+            maxValue = arr[i]; // Cập nhật giá trị lớn nhất
+        }
+    }
+
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]; // Tính tổng các phần tử
+    }
+    let average = sum / arr.length; // Tính trung bình
+
+    document.write("Giá trị lớn nhất trong mảng là: " + maxValue + "<br/>");
+   document.write("Giá trị trung bình của các phần tử trong mảng là: " + average);
+
+
+</script>
+</body>
+</html>
