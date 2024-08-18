@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra tuổi</title>
+</head>
+<body>
+<input type="number" placeholder="Nhập tuổi" id="old">
+<input type="button" value="Check" onclick="check();">
+<h4 id="ketqua"></h4>
+<script>
+    function check() {
+        let yearOld = parseInt(document.getElementById("old").value);
+        let result;
+        if (0 < yearOld && yearOld < 120) {
+            result = "Đó là tuổi của 1 người";
+        } else {
+            result = "Đó không phải là tuổi của 1 người";
+        }
+        document.getElementById("ketqua").innerHTML = result;
+    }
+</script>
+
+</body>
+</html>

@@ -9,7 +9,7 @@
 <script>
 
     let heightRectan = parseInt(prompt("Enter height Rectangular"));
-    let widthRectan =  parseInt(prompt("Enter width Rectangular"));
+    let widthRectan = parseInt(prompt("Enter width Rectangular"));
 
     for (let i = 1; i <= heightRectan; i++) {  // Vòng lặp quản lý số dòng
         let row = '';  // Khởi tạo chuỗi rỗng để lưu các ký tự của dòng hiện tại
@@ -22,9 +22,9 @@
                 row += ' ';  // In dấu khoảng trắng nếu là bên trong
             }
         }
+        document.write("<pre>" + row + "</pre>");
 
-        console.log(row);
     }
-    </script>
+</script>
 </body>
 </html>

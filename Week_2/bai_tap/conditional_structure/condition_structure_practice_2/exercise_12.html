@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính lãi suất ngân hàng</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Tiền ban đầu</th>
+        <th>Số tháng</th>
+        <th>Lãi suất hàng tháng</th>
+        <th></th>
+        <th>Tổng  tiền</th>
+    </tr>
+    <tr>
+        <td>
+            <input id="sotien" type="number" placeholder="Nhập số tiền">
+        </td>
+        <td>
+            <input id="sothang" type="number" placeholder="Nhập số tháng">
+        </td>
+        <td>
+            <input id="laisuat" placeholder="Nhập lãi suất">
+        </td>
+        <td>
+            <button onclick="tongSoTien()">=</button>
+        </td>
+        <td>
+            <input type="text" value="" id="ketqua">
+        </td>
+    </tr>
+</table>
+
+<script>
+    function tongSoTien() {
+        let soTienBanDau = Number(document.getElementById("sotien").value);
+        let soThang = Number(document.getElementById("sothang").value);
+        let laiSuat = parseFloat(document.getElementById("laisuat").value);
+        let tongTien;
+        tongTien = soTienBanDau * Math.pow((1+laiSuat),soThang);
+        let ketQua = document.getElementById("ketqua");
+        ketQua.value = tongTien + " Vnđ";
+    }
+</script>
+</body>
+</html>

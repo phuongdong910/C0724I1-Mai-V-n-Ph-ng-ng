@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính tiền điện</title>
+</head>
+<body>
+
+<h2>Tính tiền điện: </h2>
+<input type="number" placeholder="Nhập số điện tiêu thụ" id="sodien">
+<button onclick="kiemTra()">=</button>
+<h2>Kết quả:</h2>
+<h3 id="ketqua"></h3>
+<script>
+    function kiemTra() {
+        let soDien = parseInt(document.getElementById("sodien").value);
+        let tienDien;
+        let thueVAT = 1.08;
+        let bac1 = 50 * 2000;
+        let bac2 = 50 * 2200;
+        let bac3 = 100 * 2500;
+        let bac4 = 100 * 3000;
+        let bac5 = 100 * 3500;
+        if (0 < soDien && soDien <= 50) {
+            tienDien = (soDien * 2000) *thueVAT;
+        } else if (soDien <= 100) {
+            tienDien = (bac1 + ((soDien - 50) * 2200)) * thueVAT;
+        } else if (soDien <= 200) {
+            tienDien = (bac1 + bac2 + ((soDien - 100) * 2500)) * thueVAT;
+        } else if (soDien <= 300) {
+            tienDien = (bac1 + bac2 + bac3 + ((soDien - 200) * 3000)) * thueVAT;
+        } else if (soDien <= 400) {
+            tienDien = (bac1 + bac2 + bac3 + bac4 + ((soDien - 300) * 3500)) * thueVAT;
+        } else {
+            tienDien = (bac1 + bac2 + bac3 + bac4 + bac5 + ((soDien - 400) * 4000)) * thueVAT;
+        }
+        document.getElementById("ketqua").innerHTML = "Tổng tiền điện của bạn là: " + tienDien + " Vnđ";
+    }
+</script>
+</body>
+</html>

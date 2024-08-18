@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra co phai canh cua tam giac khong</title>
+</head>
+<body>
+<input type="number" placeholder="Nhập cạnh a" id="canhA">
+<input type="number" placeholder="Nhập cạnh b" id="canhB">
+<input type="number" placeholder="Nhập cạnh c" id="canhC">
+<button id="btn-1">Kiểm tra</button>
+<h3 id="ketqua"></h3>
+<script>
+    function kiemTra() {
+        let canhA = parseInt(document.getElementById("canhA").value);
+        let canhB = parseInt(document.getElementById("canhB").value);
+        let canhC = parseInt(document.getElementById("canhC").value);
+        let ketQua;
+        if (canhA > 0 && canhB > 0 && canhC > 0) {
+            if (((canhA + canhB) > canhC) && ((canhB + canhC) > canhA) && ((canhA + canhC) > canhB)) {
+                ketQua = "Là cạnh của 1 tam giác";
+            } else {
+                ketQua = "Không phải là cạnh của 1 tam giác";
+            }
+        } else {
+            ketQua = "Không phải là cạnh của 1 tam giác";
+        }
+        document.getElementById("ketqua").innerHTML = ketQua;
+    }
+    let myBtn = document.getElementById("btn-1");
+    myBtn.addEventListener("click", kiemTra);
+</script>
+</body>
+</html>

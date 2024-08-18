@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính thuế thu nhập cá nhân</title>
+</head>
+<body>
+
+<h2>Tính thu nhập thuế cá nhân</h2>
+<input id="thuNhap" type="number" placeholder="Nhập tổng số tiền thu nhập" style="width: 180px">
+<input type="button" value="=" id="btn">
+<h2 id="ketqua"></h2>
+<script>
+    function check() {
+        let tienThuNhap = parseInt(document.getElementById("thuNhap").value);
+        let giamTru = 11000000 ;
+        let thuNhapTinhThue = tienThuNhap - giamTru ;
+        let bac1 = 5000000 * 5/100;
+        let bac2 = 5000000 * 10/100;
+        let bac3 = 8000000 * 15/100;
+        let bac4 = 14000000 * 20/100;
+        let bac5 = 20000000 * 25/100;
+        let bac6 = 28000000 * 30/100;
+        let ketQua;
+        if (thuNhapTinhThue <= 0) {
+            ketQua = "Mức thu nhập của bạn không cần đóng thuế";
+        } else if (0 < thuNhapTinhThue && thuNhapTinhThue <= 5000000) {
+            ketQua = "thuế TNCN = " + (thuNhapTinhThue * 5/100) + " Vnđ";
+        } else if (thuNhapTinhThue <= 10000000) {
+            ketQua = "thuế TNCN = " + (bac1 + ((thuNhapTinhThue - 5000000)*10/100)) + " Vnđ";
+        } else if (thuNhapTinhThue <= 18000000) {
+            ketQua = "thuế TNCN = " +(bac1 + bac2 + ((thuNhapTinhThue - 10000000) * 15/100)) + "Vnđ";
+        } else if (thuNhapTinhThue <= 32000000) {
+            ketQua = "thuế TNCN = " +(bac1 + bac2 + bac3 + ((thuNhapTinhThue - 18000000) * 20/100)) +" Vnđ";
+        } else if (thuNhapTinhThue <= 52000000) {
+            ketQua = "thuế TNCN = " +(bac1 + bac2 + bac3 + bac4 + ((thuNhapTinhThue - 32000000) *  25/100)) +" Vnđ";
+        } else if (thuNhapTinhThue <= 80000000) {
+            ketQua = "thuế TNCN = " +(bac1 + bac2 + bac3 + bac4 + bac5 + ((thuNhapTinhThue - 52000000) * 30/100))+ "Vnđ";
+        } else {
+            ketQua = "thuế TNCN = " +(bac1 + bac2 + bac3 + bac4 + bac5 + bac6 + ((thuNhapTinhThue - 80000000) * 35/100)) + " Vnđ";
+        }
+        document.getElementById("ketqua").innerHTML = ketQua;
+    }
+    let myBtn = document.getElementById("btn");
+    myBtn.addEventListener("click",check);
+</script>
+</body>
+</html>
