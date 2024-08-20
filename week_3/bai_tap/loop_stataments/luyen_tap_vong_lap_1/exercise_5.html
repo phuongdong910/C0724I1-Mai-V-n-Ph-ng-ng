@@ -7,24 +7,25 @@
 <body>
 
 <script>
-    let fi1 = 0;
-    let fi2 = 1;
-    let fi;
+    let soPhanTuChan = 0;
+    let soPhantuLe = 0;
 
-
-    let sum = fi1 + fi2;
-
-
-    for (let i = 0; i < 18; i++) {
-         fi = fi1 + fi2;
-        sum += fi;
-
-
-        fi1 = fi2;
-        fi2 = fi;
+    for ( let i = 0; i < mang.length; i++) {
+        if (mang[i] % 2=== 0){
+            soPhanTuChan++;
+        }else {
+            soPhantuLe++;
+        }
 
     }
-    document.write(sum);
+
+    if ( soPhanTuChan === soPhantuLe ) {
+        document.write("OK");
+
+    }else  {
+        document.write("NO")
+    }
+
 
 </script>
 </body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let doDai = parseInt(prompt("Nhap do dai cua mang"));
+
+    let mang = [];
+
+    if ( doDai > 0 && doDai < 20) {
+        for (let i = 0; i < doDai; i++) {
+            let phanTu = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`   ))
+            mang.push(phanTu);
+
+        }
+
+        document.write("Mảng  đã nhập: [" + mang + "]" + "<br>");
+
+
+        let soPhanTuChan = 0;
+        let soPhanTuLe = 0;
+
+        for (let i = 0; i < mang.length; i++) {
+            if (mang[i] % 2 === 0) {
+                soPhanTuChan++;
+            } else {
+                soPhanTuLe++;
+            }
+
+        }
+
+        if (soPhanTuChan === soPhanTuLe) {
+            document.write("OK");
+
+        } else {
+            document.write("NO")
+        }
+    } else {
+        alert("Yêu cầu nhập lại độ dài mảng nhỏ hơn 20 và lớn hơn 0")
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang = [];
+    let n = +prompt("Nhập độ dài của mảng : ");
+    while (n < 0 || n > 10 || isNaN(n) || !(n % 1 === 0))
+    {
+        n= prompt("Nhâp lại ");
+    }
+
+    for (let i = 0; i < n; i++)
+    {
+        mang[i] = +prompt("nhâp phần tử : ");
+        alert("đã nhập vào mảng "+ mang[i] + "tại vị trí " + i);
+    }
+    document.write("mảng ban đầu là: " +  mang + "<br>");
+    mang.sort((a,b) => b-a);
+    document.write("mảng sau sắp xếp: " + mang);
+</script>
+</body>
+</html>

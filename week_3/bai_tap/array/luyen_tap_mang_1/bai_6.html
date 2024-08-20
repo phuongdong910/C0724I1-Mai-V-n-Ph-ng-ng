@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let arr = [];
+    for (let i = 0; i < 10; i++) {
+        arr[i] = +prompt("Nhập vào số Nguyên");
+    }
+    let number = +prompt("Nhập so nguyen  bất kỳ : ");
+    for (let j = 0; j <10; j ++){
+        if (arr[j] === number)
+        {
+            document.write("so này thuộc nhóm trên");
+            break
+        }else{
+            document.write("số này không thuộc nhóm");
+            break;
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let input = prompt("Nhập vào mảng số nguyên có 10 phần tử (cách nhau bởi dấu phẩy)");
+    let array = input.split(",").map(Number);
+    let numbersV = parseInt(prompt("Nhập vào số nguyên V:"));
+    let index = array.indexOf(numbersV);
+    if (index !== -1) {
+        array.splice(index,1);
+        array.push(0);
+    }
+    document.write("Mảng mới là: " + array.toString());
+</script>
+</body>
+</html>

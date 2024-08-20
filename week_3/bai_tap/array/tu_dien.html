@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function dich() {
+        let tiengAnh = ["apple", "banana", "black", "blue", "cat", "dog"];
+        let tiengViet = ["táo", "chuối", "đen", "xanh", "mèo", "chó"];
+        let ketQua = "khong tim thay";
+        let dich = document.getElementById("anh").value;
+        for (let i = 0; i < tiengAnh.length; i++) {
+            if (dich === tiengAnh[i]) {
+                ketQua = tiengViet[i];
+                break;
+            }
+        }
+        document.getElementById("ketQua").innerText = ketQua;
+    }
+
+</script>
+</body>
+</html>
