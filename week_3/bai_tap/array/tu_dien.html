@@ -5,10 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+
+<p>Nhập từ cần dịch</p>
+<input id=anh>
+<button onclick=dich()>Dịch</button>
+<p id="ketQua"></p>
 <script>
     function dich() {
-        let tiengAnh = ["apple", "banana", "black", "blue", "cat", "dog"];
-        let tiengViet = ["táo", "chuối", "đen", "xanh", "mèo", "chó"];
+        let tiengAnh = ["apple", "white", "black", "chicken", "cat", "tiger"];
+        let tiengViet = ["táo", "trắng", "đen", "gà", "mèo", "hổ"];
         let ketQua = "khong tim thay";
         let dich = document.getElementById("anh").value;
         for (let i = 0; i < tiengAnh.length; i++) {
