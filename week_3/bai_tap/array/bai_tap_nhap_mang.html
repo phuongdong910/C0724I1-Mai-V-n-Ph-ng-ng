@@ -7,41 +7,74 @@
 <body>
 
 <script>
-    let doDai = parseInt(prompt("Nhap do dai cua mang"));
+
+    let n = prompt("Nhập độ dài của mảng");
+    if (n <= 0 || n > 20 || isNaN(n) || !(n % 1 === 0)) {
+        n = prompt("Nhập lại độ dài mảng")
+    }
 
     let mang = [];
 
-    if ( doDai > 0 && doDai < 20) {
-        for (let i = 0; i < doDai; i++) {
-            let phanTu = parseInt(prompt("Nhập phần tử thứ " +i   ))
-            mang.push(phanTu);
+    for ( let i = 0; i < n; i++) {
+        let phanTu = +prompt("Nhập phần tử thứ: " + i);
+        mang.push(phanTu);
 
-        }
-
-        document.write("Mảng  đã nhập: [" + mang + "]" + "<br>");
-
-
-        let soPhanTuChan = 0;
-        let soPhanTuLe = 0;
-
-        for (let i = 0; i < mang.length; i++) {
-            if (mang[i] % 2 === 0) {
-                soPhanTuChan++;
-            } else {
-                soPhanTuLe++;
-            }
-
-        }
-
-        if (soPhanTuChan === soPhanTuLe) {
-            document.write("OK");
-
-        } else {
-            document.write("NO")
-        }
-    } else {
-        doDai =   parseInt(prompt("Nhap lại juudo dai cua mang"));
     }
+    document.write("Mảng vừa nhập là: [" + mang +"]" + "<br>" + "Độ dài của mảng là: " + mang.length + "<br>");
+
+    let soPhanTuChan = 0;
+    let soPhanTuLe = 0;
+
+    for (i = 0; i <mang.length; i++) {
+        if(i % 2 ===0){
+            soPhanTuChan++;
+        }else {
+            soPhanTuLe++;
+        }
+    }
+
+    if (soPhanTuChan === soPhanTuLe){
+        document.write("OK");
+    }else {
+        document.write("NO");
+    }
+
+
+    // let doDai = parseInt(prompt("Nhap do dai cua mang"));
+    //
+    // let mang = [];
+    //
+    // if ( doDai > 0 && doDai < 20) {
+    //     for (let i = 0; i < doDai; i++) {
+    //         let phanTu = parseInt(prompt("Nhập phần tử thứ " +i   ))
+    //         mang.push(phanTu);
+    //
+    //     }
+    //
+    //     document.write("Mảng  đã nhập: [" + mang + "]" + "<br>");
+    //
+    //
+    //     let soPhanTuChan = 0;
+    //     let soPhanTuLe = 0;
+    //
+    //     for (let i = 0; i < mang.length; i++) {
+    //         if (mang[i] % 2 === 0) {
+    //             soPhanTuChan++;
+    //         } else {
+    //             soPhanTuLe++;
+    //         }
+    //
+    //     }
+    //
+    //     if (soPhanTuChan === soPhanTuLe) {
+    //         document.write("OK");
+    //
+    //     } else {
+    //         document.write("NO")
+    //     }
+    // } else {
+    //     doDai =   parseInt(prompt("Nhap lại juudo dai cua mang"));
+    // }
 
 
 </script>
