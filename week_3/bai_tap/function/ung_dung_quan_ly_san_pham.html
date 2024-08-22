@@ -3,22 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <title>Title</title>
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #737373;
+            padding: 5px;
+        }
+
+        thead {
+            background-color: #2f2fb6;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+<input type="text" id="name-product">
+<input type="text" id="id-product" hidden>
+<button onclick="addProduct()">Add</button>
+<button onclick="editProduct()">Edit</button>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="list-product"></tbody>
+</table>
+
 <script>
-    function processConfirm(answer) {
-        let result = "";
-        if (answer) {
-            result = "Excellent. We'll play a nice game of chess.";
-        } else {
-            result = "Maybe later then.";
-        }
-        return result;
+    let productList = [
+        "Samsung Note 10", "Nokia S21", "Iphone 14 xs", "Xiaomi Note 10"
+    ];
+
+
+    function showListProduct() {
+        let text = "";
+        productList.forEach((item, index) => {
+            text += "<tr>";
+            text += "<td>";
+            text += index + 1;
+            text += "</td>";
+            text += "<td>";
+            text += item;
+            text += "</td>";
+            text += "<td>";
+            text += `<button onclick="deleteProduct(${index})" class="btn-delete">Delete</button>`;
+            text += `<button onclick="updateProduct(${index})" class="btn-update">Update</button>`;
+            text += "</td>";
+            text += "</tr>";
+        })
+
+        document.getElementById("list-product").innerHTML = text;
     }
 
-    let confirmAnswer = confirm("Shall we play a game?");
-    let theAnswer = processConfirm(confirmAnswer);
-    alert(theAnswer);
+    showListProduct();
+
+    function addProduct() {
+        let nameProduct = document.getElementById("name-product").value;
+        if (nameProduct) {
+            productList.push(nameProduct);
+            // goi lai ham showListProduct() de hien thi lai d/s
+            showListProduct();
+            document.getElementById("name-product").value = "";
+        } else {
+            alert("Please enter product name");
+        }
+    }
+
+    function deleteProduct(index) {
+        if (confirm("Are you sure you want to delete")) {
+            productList.splice(index, 1);
+            showListProduct();
+        }
+    }
+
+
+    function updateProduct(index) {
+        // lay san pham can update
+        let product = productList[index];
+        // hien thi san pham can update trong input text
+        document.getElementById("name-product").value = product;
+        // luu vi tri vi tri cua san pham can update  trong input hidden  (id)
+        document.getElementById("id-product").value = index;
+    }
+
+    function editProduct() {
+        let index = document.getElementById("id-product").value;
+        let nameProduct = document.getElementById("name-product").value;
+
+        productList[index] = nameProduct;
+
+        // goi lai ham showListProduct() de hien thi lai d/s
+        showListProduct();
+    }
+
+    // arr = [1,2,4,5]
+    // arr[1] = 5; // update can 2 yeu to: index vi tri can update, gia tri moi
+
+    /*
+    Nang cao: 1 san pham se co ten san pham, gia tien, so luong san pham
+    Goi y: Su dung mang 2 chieu
+    VD:
+    arr = [
+        ["Samsung", 23000, 2],
+        ["Nokia", 15000, 3],
+        ["Iphone", 100000, 1],
+        ["Xiaomi", 5000, 5]
+    ]
+
+     */
 </script>
 </body>
 </html>

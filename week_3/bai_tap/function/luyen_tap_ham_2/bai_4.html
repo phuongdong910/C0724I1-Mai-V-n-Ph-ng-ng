@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không. Nếu là ký tự số hàm trả về true, ngược lại
+        trả về false.</title>
+</head>
+<body>
+
+<script>
+    //Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không. Nếu là ký tự số hàm trả về true, ngược lại trả về false.
+    // function checkCharacter(char) {
+    //     if (!isNaN(char) && char !== " ") {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    //
+    // }
+    function checkCharacter(char) {
+        return !isNaN(char) && char !== " ";
+    }
+
+    let char1 = "5";
+    let char2 = "c";
+    let char3 = " ";
+    alert(checkCharacter(char1));
+    alert(checkCharacter(char2));
+    alert(checkCharacter(char3));
+
+
+</script>
+</body>
+</html>

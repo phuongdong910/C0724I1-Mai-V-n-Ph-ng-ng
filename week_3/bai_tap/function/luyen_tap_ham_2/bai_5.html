@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết hàm nhận vào 3 số nguyên bất kỳ, trả về số nguyên có giá trị nhỏ nhất.</title>
+</head>
+<body>
+
+<script>
+    function findMin(x, y, z) {
+        let min = x;
+        if (y < min) {
+            min = y;
+        }
+        if (z < min) {
+            min = z;
+        }
+        return min;
+    }
+
+    let x = 8;
+    let y = 19;
+    let z = 2;
+    alert(`So nho nhat trong ba so ${x}, ${y}, ${z} là ${findMin(x, y, z)} `)
+</script>
+</body>
+</html>
