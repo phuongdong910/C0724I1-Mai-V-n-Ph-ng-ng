@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function isPrime(number) {
+        if (number === 2 ) {
+            return  alert( " 2 la so nguyen to");
+        }
+        if (number < 2) {
+            return alert( number + " không phải la so nguyen to");
+        } else {
+            for (let i = 2; i < number; i++) {
+                if (number % i === 0) {
+                    return alert( number + " không phải la so nguyen to");
+                }
+            }
+        }
+        return alert( number + " la so nguyen to");
+    }
+
+
+    let number1 = +prompt("enter a number");
+
+    if (number1 <10000){
+        isPrime(number1);
+
+    }else {
+        alert("So nay lớn hơn hoặc bang 10000")
+    }
+
+</script>
+</body>
+</html>

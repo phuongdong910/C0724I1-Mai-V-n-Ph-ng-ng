@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    arrStar = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    arrConstellation = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+    function getString(starName) {
+
+        for (let i = 0; i < arrStar.length; i++) {
+            if ( arrStar[i] === starName){
+               alert ("CHom sao tương ưng là: " + arrConstellation[i]);
+               return
+            }
+        }
+             alert("không tìm thấy")
+    }
+
+    let startName1 = prompt("Nhap ngoi sao ban muon tim kiem");
+    getString(startName1);
+
+</script>
+</body>
+</html>

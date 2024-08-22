@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo hàm nhận vào một đối số dạng số, tăng giá trị đối số đó lên 1 và trả lại giá trị cho lời gọi hàm.</title>
+</head>
+<body>
+
+<p id="result"></p>
+
+<script>
+    function getNumber(num) {
+
+        return num + 1;
+    }
+
+    let num1 = 7;
+
+    let result = getNumber(num1);
+    document.getElementById("result").innerHTML = "Giá trị sau khi tăng là: " + result;
+</script>
+</body>
+</html>

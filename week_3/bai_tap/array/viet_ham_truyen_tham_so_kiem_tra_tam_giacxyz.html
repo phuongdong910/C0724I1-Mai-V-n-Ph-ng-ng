@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    function checkTriangle(x, y, z) {
+        if (x + y > z && x + z > y && y + z > x && x > 0 && y > 0 && z > 0) {
+            if (x * x + y * y === z * z || x * x + z * z === y * y || z * z + y * y === x * x) {
+                alert("là ba cạnh của một tam giác vuông")
+            } else {
+                alert("chỉ là ba cạnh của một tam giác")
+            }
+        } else {
+            alert("Không phải là 3 cạnh của tam giác")
+        }
+    }
+
+    let x = parseFloat(prompt("nhập cạnh x"));
+    let y = parseFloat(prompt("nhập cạnh y"));
+    let z = parseFloat(prompt("nhập cạnh z"));
+
+    while (isNaN(x) || isNaN(y) || isNaN(z)) {
+        x = parseFloat(prompt("nhập lai cạnh x"));
+        y = parseFloat(prompt("nhập lại cạnh y"));
+        z = parseFloat(prompt("nhập  lại cạnh z"));
+    }
+    checkTriangle(x, y, z);
+</script>
+</body>
+</html>
