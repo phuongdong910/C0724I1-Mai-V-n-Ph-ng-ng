@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    class Temperature{
+        celsius;
+        constructor(celsius) {
+            this.celsius = celsius;
+        }
+
+        changeFahrenheit(){
+            return (this.celsius +32)*9/5;
+        }
+        changeKenvin(){
+            return this.celsius + 273.15;
+        }
+    }
+
+    let temperature = new Temperature(25);
+
+    document.write(`Độ F tương ứng là ${temperature.changeFahrenheit()} <br>`)
+    document.write(`Độ K tương ứng là ${temperature.changeKenvin()}`)
+</script>
+</body>
+</html>

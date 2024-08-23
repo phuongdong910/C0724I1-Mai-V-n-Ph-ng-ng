@@ -7,17 +7,85 @@
     <style>
         #myCanvas{
             border: 1px solid aqua;
-            background-color: yellow;
         }
     </style>
-</head>
+
+
 <body>
 
 
 <h2>Display rectangle</h2>
-<canvas id="myCanvas" width="300px" height="500px"></canvas>
+<canvas id="myCanvas" width="300px" height="500px" ></canvas>
 
-<script src="class_rectangle.js"></script>
-<script src="object_rectangle.js"></script>
+<script>
+    class Rectangle {
+        height;
+        width;
+
+        constructor(width, height) {
+            this.height = height;
+            this.width = width;
+        }
+
+        getWidth() {
+            return this.width;
+        }
+
+        getHeight() {
+            return this.height;
+        }
+
+        setWidth(width) {
+            this.width = width;
+        }
+
+        setHeight(height) {
+            this.height = height;
+        }
+
+        caculateArea() {
+            return this.width * this.height;
+        }
+
+        caculatePremeter() {
+            return (this.width + this.height) * 2;
+        }
+
+        drawRectangle(canvasRect) {
+            let canvas = document.getElementById(canvasRect);
+
+            if(canvas.getContext){
+                let ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Xóa nội dung cũ (nếu có)
+
+                //
+                let grd = ctx.createLinearGradient(0, 0, 300, 0);
+                grd.addColorStop(0, "red");
+                grd.addColorStop(1, "white");
+                //
+                ctx.fillStyle = grd;
+
+                ctx.fillRect(20, 20, this.width, this.height);
+
+
+            }
+
+        }
+    }
+///Object
+
+    let rec = new Rectangle(100, 180);
+
+    document.write("<br>", "<br>", "Area rectangle: ", rec.caculateArea(), "<br>");
+    document.write("Peremeter rectangle: ", rec.caculatePremeter(), "<br>");
+
+
+    // Hiển thị hình chữ nhật lên canvas
+    rec.drawRectangle('myCanvas');
+
+    rec.setWidth(300);
+    rec.setHeight(150);
+    rec.drawRectangle('myCanvas');
+</script>
 </body>
 </html>
