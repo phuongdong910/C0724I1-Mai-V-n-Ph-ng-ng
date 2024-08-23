@@ -7,16 +7,18 @@
 <body>
 
 <script>
-    class Temperature{
+    class Temperature {
         celsius;
+
         constructor(celsius) {
             this.celsius = celsius;
         }
 
-        changeFahrenheit(){
-            return (this.celsius +32)*9/5;
+        changeFahrenheit() {
+            return (this.celsius + 32) * 9 / 5;
         }
-        changeKenvin(){
+
+        changeKenvin() {
             return this.celsius + 273.15;
         }
     }
