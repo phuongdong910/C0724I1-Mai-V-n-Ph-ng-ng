@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    class Mobile {
+        name;
+        battery;
+        inbox;
+        outbox;
+        message;
+        status;
+
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.inbox = [];
+            this.outbox = [];
+            this.message = "";
+            this.status = false;
+        }
+
+        checkStatus() {
+            return this.status ? `${this.name} is on: ${this.name}`
+
+        }
+
+        chargeBattery() {
+            let x = setInterval(() => {
+                if (this.battery === 100){
+
+                }
+            })
+
+        }
+
+        writeMessage() {
+
+        }
+
+        readInbox() {
+
+        }
+
+        readOutbox() {
+
+        }
+
+        sendMSM
+    }
+
+    let nokia = new Mobile("")
+</script>
+</body>
+</html>

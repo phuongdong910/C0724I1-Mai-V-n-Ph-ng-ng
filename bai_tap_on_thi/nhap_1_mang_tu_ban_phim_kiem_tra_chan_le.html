@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập mảng, kiểm tra mảng theo điều kiện </title>
+</head>
+<body>
+
+<script>
+    let n = prompt(" Nhập độ dài");
+    while (n <= 0 || n > 20 || isNaN(n) || n % 1 !== 0) {
+        n = prompt("Nhập lại")
+    }
+
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(+prompt("Nhập vào phần tử thứ " + i));
+    }
+
+    alert("Mảng vừa nhập là: " + array + " Độ dài mảng la: " + array.length);
+
+    // Kiểm tra số phần tử chẵn và số phần tử lẻ.
+    let oddCount = 0;
+    let evenCount = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 === 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        }
+
+    }
+    if (evenCount === oddCount) {
+        alert("OK");
+    } else {
+        alert("NO");
+    }
+
+    // Kiểm tra mảng có tăng dần đều không
+
+    // let isIncreasing = true;
+    // let step = array[1] -array[0];
+    //
+    //
+    // for (let i = 2; i < n; i++){
+    //
+    //     if ( array[i] - array [i-1] !== step){
+    //         isIncreasing = false;
+    //         break;
+    //     }
+    //
+    // }
+    //
+    // if ( isIncreasing){
+    //     alert("OK");
+    // }else {
+    //     alert("NO");
+    // }
+
+
+</script>
+</body>
+</html>

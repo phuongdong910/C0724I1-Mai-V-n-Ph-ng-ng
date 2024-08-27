@@ -11,18 +11,25 @@
 
 <script>
 
-    function evenClickButton(){
-        alert("Hello")
+    class Product {
+        constructor(name, price) {
+            this.name = name;
+            this.price = price;
+        }
     }
 
-  // tim mot phan tu HTML  su dung document.getelementbyID
-    let btnClick =document.getElementById("btn-1");
+    let productList = [
+        new Product("Samsung Note 10", 12),
+        new Product("Nokia S21", 15),
+        new Product("Iphone 14 xs", 20),
+        new Product("Xiaomi Note 10", 25)
+    ];
 
-    //lang nghe  su kien click vao phan tu tim duoc
-    btnClick.addEventListener( "click", evenClickButton)
+    productList.sort((a, b) => a.price - b.price);
 
-    //Thuat toan chung tat ca bai toan
-
+    productList.forEach(product => {
+        console.log(`${product.name}: ${product.price}$$$`);
+    });
 
 
 

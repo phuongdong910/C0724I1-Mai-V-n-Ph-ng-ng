@@ -2,30 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>T</title>
+    <title>Title</title>
 </head>
 <body>
-
-
-
+<p id="result"></p>
 <script>
 
-    var array = [5,3,4,1];
-
-    for(var x=0; x<array.length; x++)
-    {
-        for(var y=array.length-1; y>x; y--)
-        {
-            if(array[x] > array[y])
-            {
-                var temp = array[y];
-                array[y] = array[x];
-                array[x] = temp;
-            }
+    class ElectricLamp{
+        constructor(status) {
+            this.status = status;
+        }
+        getStatus(){
+            return this.status;
         }
     }
 
-    console.log(array);
+    class SwitchButton{
+        constructor(lamp, status) {
+            this.status = status;
+            this.lamp = lamp;
+        }
+        getLamp(){
+            return this.lamp;
+        }
+
+        setLamp(lamp){
+            this.lamp = lamp;
+        }
+
+        connectToLamp(Electriclamp){
+            return this.lamp = Electriclamp;
+        }
+
+        switchOff(){
+            this.lamp.status = false;
+            return this.status = false;
+        }
+
+        switchOn(){
+            this.lamp.status = true;
+            return this.status = true;
+        }
+    }
+
+
+    let electricLamp_1 = new ElectricLamp(false);
+
+    let switchButton_1 = new SwitchButton(electricLamp_1,false); // kết nối giữa  công tắc 1 và đèn 1
+
+    console.log(switchButton_1.switchOn());
+    console.log(electricLamp_1.getStatus());
+    console.log(switchButton_1.switchOff());
+    console.log(electricLamp_1.getStatus());
 
 </script>
 </body>

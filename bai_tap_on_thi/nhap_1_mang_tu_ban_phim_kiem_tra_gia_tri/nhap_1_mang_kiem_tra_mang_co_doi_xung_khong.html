@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let n = prompt("Enter length");
+    while (n <= 0 || isNaN(n) || n % 1 !== 0) {
+        n = prompt("Re-enter length");
+    }
+
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(+prompt("Nhập vào phần tử thứ: " + i));
+    }
+    alert("Array just entered is: " + array + " Array length: " + array.length);
+    // Kiểm tra xem mảng có đối xứng không
+
+    let isSymmetrical = true;
+
+    for (let i =0; i <= Math.floor(n/2); i++){
+        if(array[i] !== array [n-i-1]){
+            isSymmetrical = false;
+            break;
+        }
+    }
+    if(isSymmetrical){
+        alert("OK");
+    }else{
+        alert("NO");
+    }
+
+    //  mảng có giá trị chia hết cho index
+    // let isDivisible = true;
+    //
+    // for (let i = 1; i < n; i++){
+    //     if (array[i]% i !==0 ){
+    //         isDivisible = false;
+    //         break;
+    //     }
+    // }
+    // if(isDivisible){
+    //     alert("OK")
+    // }else {
+    //     alert("NO")
+    // }
+
+
+</script>
+</body>
+</html>

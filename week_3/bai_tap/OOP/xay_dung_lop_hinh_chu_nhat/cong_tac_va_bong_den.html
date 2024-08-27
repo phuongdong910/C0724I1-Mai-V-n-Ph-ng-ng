@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    class ElectricLamp {
+        constructor() {
+            this.lampStatus = false;
+        }
+
+        getStatus() {
+            return this.lampStatus;
+        }
+
+        setStatus(status) {
+            this.lampStatus = status;
+        }
+
+        turnOn() {
+            this.lampStatus = true;
+        }
+
+        turnOff() {
+            this.lampStatus = false;
+        }
+    }
+
+    class SwitchButton {
+        constructor() {
+            this.statusSwitchButton = false;
+            this.lamp = null;
+        }
+
+        connectToLamp(lamp) {
+            this.lamp = lamp;
+        }
+
+        switchOff() {
+            this.statusSwitchButton = false;
+            this.lamp.turnOff();
+
+        }
+
+        switchOn() {
+            if (this.lamp !== null) {
+                this.statusSwitchButton = true;
+                this.lamp.turnOn();
+            } else {
+                alert("Chưa kết nối")
+            }
+        }
+    }
+
+    // tạo bóng đèn
+
+    let lamp1 = new ElectricLamp();
+    let switchButton1 = new SwitchButton();
+    switchButton1.connectToLamp(lamp1);
+    // bật công tăc
+    document.write("Bật công tac" + "<br>");
+    switchButton1.switchOn();
+    document.write(lamp1.getStatus() + "<br>");
+    document.write("Tắt công tắc" + "<br>");
+
+    switchButton1.switchOff();
+    document.write(lamp1.getStatus())
+
+
+    // class ElectricLamp {
+    //     constructor() {
+    //         this.status = false; // Mặc định bóng đèn tắt
+    //     }
+    //
+    //     // Phương thức lấy trạng thái của bóng đèn
+    //     getStatus() {
+    //         return this.status ? "Bóng đèn đang bật" : "Bóng đèn đang tắt";
+    //     }
+    //
+    //     // Phương thức bật bóng đèn
+    //     turnOn() {
+    //         this.status = true;
+    //         this.getStatus();
+    //     }
+    //
+    //     // Phương thức tắt bóng đèn
+    //     turnOff() {
+    //         this.status = false;
+    //         this.getStatus();
+    //     }
+    // }
+    //
+    // // Lớp SwitchButton đại diện cho công tắc
+    // class SwitchButton {
+    //     constructor() {
+    //         this.status = false; // Mặc định công tắc tắt
+    //         this.lamp = null; // Chưa kết nối với bóng đèn
+    //     }
+    //
+    //     // Phương thức kết nối công tắc với bóng đèn
+    //     connectToLamp(lamp) {
+    //         this.lamp = lamp;
+    //     }
+    //
+    //     // Phương thức bật công tắc
+    //     switchOn() {
+    //         if (this.lamp) { // Kiểm tra nếu đã kết nối với bóng đèn
+    //             this.lamp.turnOn();
+    //             this.status = true;
+    //             return "Công tắc đã bật";
+    //         } else {
+    //             return "Chưa kết nối với bóng đèn";
+    //         }
+    //     }
+    //
+    //     // Phương thức tắt công tắc
+    //     switchOff() {
+    //         if (this.lamp) { // Kiểm tra nếu đã kết nối với bóng đèn
+    //             this.lamp.turnOff();
+    //             this.status = false;
+    //             return "Công tắc đã tắt";
+    //         } else {
+    //             return "Chưa kết nối với bóng đèn";
+    //         }
+    //     }
+    // }
+    //
+    // // Tạo đối tượng bóng đèn
+    // let electricLamp_1 = new ElectricLamp();
+    //
+    // // Tạo đối tượng công tắc
+    // let switchButton_1 = new SwitchButton();
+    //
+    // // Kết nối công tắc với bóng đèn
+    // switchButton_1.connectToLamp(electricLamp_1);
+    //
+    // // Bật tắt công tắc 10 lần
+    //
+    //     // Bật công tắc
+    // // Thử bật công tắc và kiểm tra trạng thái bóng đèn
+    // document.write(switchButton_1.switchOn() + "<br>");
+    // document.write(electricLamp_1.getStatus() + "<br>");
+    //
+    // // Thử tắt công tắc và kiểm tra trạng thái bóng đèn
+    // document.write(switchButton_1.switchOff() + "<br>");
+    // document.write(electricLamp_1.getStatus() + "<br>");
+    // for (let i=0 ; i<10; i++ ){
+    //     document.write(switchButton_1.switchOn() + "<br>");
+    //     document.write(electricLamp_1.getStatus() + "<br>");
+    // }
+
+
+</script>
+</body>
+</html>

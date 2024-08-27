@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Product management application</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        thead {
+            background-color: cornflowerblue;
+            color: #dddddd;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th td {
+            padding: 15px;
+            margin: 15px;
+
+        }
+
+        .btn-delete {
+            background-color: red;
+        }
+
+        .btn-update {
+            background-color: blue;
+        }
+
+        tr:nth-child(even){
+            background-color: lightgray;
+
+        }
+
+    </style>
+</head>
+<body>
+<input type="text" id="id-product" hidden>
+
+
+<input type="text" id="name-product">
+<input type="text" id="price-product">
+<input type="text" id="quantity-product">
+<button type="button" onclick="productList.addProduct()">Add</button>
+<button type="button" onclick="productList.editProduct()">Edit</button>
+<button type="button" onclick="productList.sortProductListPrice()">Sort</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+
+    </tr>
+
+    </thead>
+    <tbody id="list-product">
+
+    </tbody>
+</table>
+
+<script>
+
+    class ProductList {
+        constructor() {
+            this.productList = [
+                ["Samsung S23", "45000", "3"],
+                ["Xiaomi", "37000", "5"],
+                ["Nokia20", "25000", "2"],
+                ["Redmi7", "40000", "3"],
+                ["Iphone15 Pro", "66000", "5"]
+            ];
+
+        }
+
+        //Phương thức hiển thị danh sách sản phẩm
+        showListProduct() {
+            let text = "";
+            this.productList.forEach((item, index) => {
+                text += "<tr>";
+                text += "<td>" + (index + 1) + "</td>";
+                text += "<td>" + item[0] + "</td>";
+                text += "<td>" + item[1] + "</td>";
+                text += "<td>" + item[2] + "</td>";
+                text += `<td><button class="btn-delete" onclick="productList.deleteProduct(${index})">Delette</button>`;
+                text += `<td><button class="btn-update" onclick="productList.updateProduct(${index})">Update</button>`;
+                text += "</tr>";
+
+            });
+            document.getElementById("list-product").innerHTML = text;
+        }
+
+        addProduct() {
+            let nameProduct = document.getElementById("name-product").value;
+            let priceProduct = document.getElementById("price-product").value;
+            let quantityProduct = document.getElementById("quantity-product").value;
+
+            if (nameProduct && priceProduct && quantityProduct) {
+                this.productList.push([nameProduct, priceProduct, quantityProduct]);
+                this.showListProduct();
+                document.getElementById("name-product").value = "";
+                document.getElementById("price-product").value = "";
+                document.getElementById("quantity-product").value = "";
+            } else {
+                alert("Please enter information product");
+            }
+        }
+
+        deleteProduct(index) {
+            if (confirm("Are you sure you want to delete")) {
+                this.productList.splice(index, 1);
+                this.showListProduct();
+            }
+
+        }
+
+        //Phương thức cập nhật sản phẩm
+
+        updateProduct(index) {
+            let product = this.productList[index];
+            document.getElementById("name-product").value = product[0];
+            document.getElementById("price-product").value = product[1];
+            document.getElementById("quantity-product").value = product [2];
+            document.getElementById("id-product").value = index
+
+        }
+
+        // Phương thức chỉnh sửa sau khi cập nhật
+
+        editProduct() {
+            let index = document.getElementById("id-product").value;
+            let nameProduct = document.getElementById("name-product").value;
+            let priceProduct = document.getElementById("price-product").value;
+            let quantityProduct = document.getElementById("quantity-product").value;
+            this.productList[index] = [nameProduct,priceProduct,quantityProduct];
+            this.showListProduct();
+            document.getElementById("name-product").value = "";
+            document.getElementById("price-product").value = "";
+            document.getElementById("quantity-product").value = "";
+        }
+
+        sortProductListPrice () {
+            this.productList.sort((a,b) => parseInt(a[1]) - parseInt(b[1]));
+            this.showListProduct();
+        }
+    }
+
+    const productList = new ProductList();
+    productList.showListProduct();
+
+</script>
+</body>
+</html>

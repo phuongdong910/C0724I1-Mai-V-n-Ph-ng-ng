@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Ứng dụng quản lý sản phẩm 2</title>
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #737373;
+            padding: 5px;
+        }
+
+        thead {
+            background-color: blue;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+        }
+        .btn-update {
+            background-color: #50af50;
+            color: #dddddd;
+        }
+    </style>
 </head>
 <body>
-<input type="text">
-<button type="button">Add</button>
-<button type="button">Edit</button>
+<input type="text" id="name-product">
+<input type="text" id="id-product" hidden>
+
+<button type="button" onclick="addProduct()">Add</button>
+<button type="button" onclick="editProduct()">Edit</button>
 <table>
     <thead>
     <tr>
@@ -16,13 +43,15 @@
         <th></th>
     </tr>
     </thead>
-    <tbody id=" lish_product">
+    <tbody id="list-product">
 
     </tbody>
 </table>
 
-<script src="ung_dung_quan_ly_san_pham.js"></script>
+<script src="ung_dung_quan_ly_san_pham.js">
 
+
+</script>
 
 </body>
 </html>
