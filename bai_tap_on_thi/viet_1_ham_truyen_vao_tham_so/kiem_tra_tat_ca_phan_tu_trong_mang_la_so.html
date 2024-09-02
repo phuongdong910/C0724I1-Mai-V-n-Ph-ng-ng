@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--Viết 1 hàm truyền vào 1 tham số (với tham  số mảng), (checkArray(array))-->
+<!--Hàm trả về  True nếu tất cả các phần tử trong mảng là số, ngược lại trả về False-->
+<!--Ví dụ: checkArray([111,12,34,2] => True-->
+<!--Ví dụ: checkArray([1a,12,34,2] => False				Cách tính =>-->
+
+<script>
+    function checkString(str) {
+        let isNumber = true;
+        for (let char of str){
+            if (!(char>=0 && char<=9)){
+                isNumber = false;
+                break;
+            }
+        }
+
+        if(isNumber){
+            return true;
+        }else {
+            return  false;
+        }
+
+    }
+
+    alert(checkString("ghghghgh747474"));
+    alert(checkString("4444444444576"))
+</script>
+</body>
+</html>

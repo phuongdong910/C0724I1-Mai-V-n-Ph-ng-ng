@@ -2,10 +2,429 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 70px; /* Đảm bảo nội dung không bị che bởi taskbar */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-container input {
+            margin: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .login-container button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .content {
+            display: none; /* Ẩn toàn bộ nội dung trước khi login */
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto; /* Canh giữa bảng */
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        input {
+            width: 250px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            padding: 8px 13px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .btn-add {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-update {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #FF9800;
+            color: white;
+        }
+        .btn-moveright {
+            display: flex;
+            justify-content: center;
+
+        }
+
+
+    </style>
 </head>
 <body>
 
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Thông tin sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="id-product">
+                <div class="form-group">
+                    <label for="code-product">Mã sản phẩm:</label>
+                    <input type="text" id="code-product" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="name-product">Tên sản phẩm:</label>
+                    <input type="text" id="name-product" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="brand-product">Hãng sản xuất:</label>
+                    <input type="text" id="brand-product" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="price-product">Giá sản phẩm:</label>
+                    <input type="text" id="price-product" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="saveBtn">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Menu Bar bằng Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Product Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+
+        <!-- Ô tìm kiếm sản phẩm -->
+        <input type="text" id="searchProduct" placeholder="Search Products" class="form-control ml-3 hidden" style="width: 200px;">
+        <button class="btn btn-primary ml-2 hidden" onclick="searchProduct()">Search</button>
+
+        <!-- Ô login -->
+        <div class="login-container ml-4">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+</nav>
+
+<div class="content"> <!-- Thêm class "content" để quản lý hiển thị -->
+    <h1 id="title">Product Management</h1>
+    <br>
+    <div class="product-management btn-moveright">
+        <button class="btn btn-add hidden" id="addBtn" onclick="showAddProductModal()">Add Product</button>
+        <button class="btn btn-primary hidden" id="sortBtn" onclick="sortProductPrice()">Sort Price</button>
+
+    </div>
+    <br>
+
+    <table class="product-management">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="list-product"></tbody>
+    </table>
+</div>
+
+<script>
+    let productList = [
+        ["SP001", "Samsung Note 10", "Samsung", 1000],
+        ["SP002", "Nokia S21", "Nokia", 800],
+        ["SP003", "Iphone 14 xs", "Apple", 1200],
+        ["SP004", "Xiaomi Note 10", "Xiaomi", 900],
+        ["SP001", "Samsung Note 10", "Samsung", 1000],
+        ["SP002", "Nokia S21", "Nokia", 800],
+        ["SP003", "Iphone 14 xs", "Apple", 1200],
+        ["SP004", "Xiaomi Note 10", "Xiaomi", 900]
+    ];
+
+    let isLoggedIn = false;
+
+    class Mobile {
+        constructor(code, name, brand, price) {
+            this.code = code;
+            this.name = name;
+            this.brand = brand;
+            this.price = price;
+        }
+
+        getCode() {
+            return this.code;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getBrand() {
+            return this.brand;
+        }
+
+        getPrice() {
+            return this.price;
+        }
+
+        setCode(code) {
+            this.code = code;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setBrand(brand) {
+            this.brand = brand;
+        }
+
+        setPrice(price) {
+            this.price = price;
+        }
+    }
+
+    function showListProduct() {
+        let text = "";
+        productList.forEach((item, index) => {
+            text += "<tr>";
+            text += "<td>" + (index + 1) + "</td>";
+            text += "<td>" + item[0] + "</td>";  // Code
+            text += "<td>" + item[1] + "</td>";  // Name
+            text += "<td>" + item[2] + "</td>";  // Brand
+            text += "<td>" + item[3] + "</td>";  // Price
+            text += "<td><button class='btn btn-edit' onclick='showUpdateProductModal(" + index + ")'>Edit</button></td>";
+            text += "<td><button class='btn btn-delete' onclick='confirmDeleteProduct(" + index + ")'>Delete</button></td>";
+            text += "</tr>";
+        });
+        document.getElementById("list-product").innerHTML = text;
+    }
+
+    function showAddProductModal() {
+        document.getElementById("productModalLabel").innerText = "Add Product";
+        document.getElementById("code-product").value = "";
+        document.getElementById("name-product").value = "";
+        document.getElementById("brand-product").value = "";
+        document.getElementById("price-product").value = "";
+        document.getElementById("saveBtn").setAttribute("onclick", "addProduct()");
+        $('#productModal').modal('show');
+    }
+
+    function showUpdateProductModal(index) {
+        document.getElementById("productModalLabel").innerText = "Update Product";
+        const product = productList[index];
+        document.getElementById("code-product").value = product[0];
+        document.getElementById("name-product").value = product[1];
+        document.getElementById("brand-product").value = product[2];
+        document.getElementById("price-product").value = product[3];
+        document.getElementById("id-product").value = index;
+        document.getElementById("saveBtn").setAttribute("onclick", "editProduct(" + index + ")");
+        $('#productModal').modal('show');
+    }
+
+    function addProduct() {
+        const code = document.getElementById("code-product").value;
+        const name = document.getElementById("name-product").value;
+        const brand = document.getElementById("brand-product").value;
+        const price = parseFloat(document.getElementById("price-product").value);
+
+        if (code && name && brand && !isNaN(price)) {
+            productList.push([code, name, brand, price]);
+            showListProduct();
+            $('#productModal').modal('hide');
+        } else {
+            alert("Please fill in all fields correctly.");
+        }
+    }
+
+    function editProduct(index) {
+        const code = document.getElementById("code-product").value;
+        const name = document.getElementById("name-product").value;
+        const brand = document.getElementById("brand-product").value;
+        const price = parseFloat(document.getElementById("price-product").value);
+
+        if (code && name && brand && !isNaN(price)) {
+            productList[index] = [code, name, brand, price];
+            showListProduct();
+            $('#productModal').modal('hide');
+        } else {
+            alert("Please fill in all fields correctly.");
+        }
+    }
+
+    function confirmDeleteProduct(index) {
+        if (confirm("Are you sure you want to delete this product?")) {
+            deleteProduct(index);
+        }
+    }
+
+    function deleteProduct(index) {
+        productList.splice(index, 1);
+        showListProduct();
+    }
+
+    function searchProduct() {
+        const query = document.getElementById("searchProduct").value.toLowerCase();
+        let filteredProducts = productList.filter(product =>
+            product[0].toLowerCase().includes(query) ||
+            product[1].toLowerCase().includes(query) ||
+            product[2].toLowerCase().includes(query)
+        );
+        let text = "";
+        filteredProducts.forEach((item, index) => {
+            text += "<tr>";
+            text += "<td>" + (index + 1) + "</td>";
+            text += "<td>" + item[0] + "</td>";  // Code
+            text += "<td>" + item[1] + "</td>";  // Name
+            text += "<td>" + item[2] + "</td>";  // Brand
+            text += "<td>" + item[3] + "</td>";  // Price
+            text += "<td><button class='btn btn-edit' onclick='showUpdateProductModal(" + index + ")'>Edit</button></td>";
+            text += "<td><button class='btn btn-delete' onclick='confirmDeleteProduct(" + index + ")'>Delete</button></td>";
+            text += "</tr>";
+        });
+        document.getElementById("list-product").innerHTML = text;
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === "Dong" && password === "phuongdong") {
+            isLoggedIn = true;
+            document.querySelector(".content").style.display = "block"; // Hiển thị nội dung
+            document.getElementById("username").style.display = "none"; // Ẩn ô input username
+            document.getElementById("password").style.display = "none"; // Ẩn ô input password
+            document.querySelector(".login-container button").style.display = "none"; // Ẩn nút login
+            document.getElementById("searchProduct").classList.remove("hidden"); // Hiển thị ô tìm kiếm
+            document.querySelector(".btn.btn-primary.ml-2").classList.remove("hidden"); // Hiển thị nút search
+            document.getElementById("addBtn").classList.remove("hidden"); // Hiển thị nút thêm sản phẩm
+            document.getElementById("sortBtn").classList.remove("hidden"); // Hiển thị nút Sort Price
+            alert("Login successful!");
+        } else {
+            alert("Invalid username or password.");
+        }
+    }
+
+    let isAscending = true;
+
+    function sortProductPrice() {
+        if (isAscending) {
+            // Sắp xếp từ thấp đến cao
+            productList.sort((a, b) => a[3] - b[3]);
+        } else {
+            // Sắp xếp từ cao đến thấp
+            productList.sort((a, b) => b[3] - a[3]);
+        }
+
+        // Đổi trạng thái sắp xếp cho lần nhấn tiếp theo
+        isAscending = !isAscending;
+
+        // Hiển thị lại danh sách sản phẩm sau khi sắp xếp
+        showListProduct();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showListProduct();
+    });
+</script>
+
+<!-- Thêm jQuery và Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Viết hàm có tham số truyền vào là một mảng ,tìm các số fibonaci có trong-->
+<!--mảng(số này đã làm bài tập ở jame). Hàm trả về 1 mảng số fibonaci được tìm thấy-->
+<!--trong mảng ( Yêu cầu sắp xếp tăng dần).-->
+<!--Gợi ý đây là dãy số fibonaci: 0,1,1,2,3,5,8,13,21,....-->
+
+
+<script>
+    function isFibonacci(num) {
+        let a = 0;
+        let b = 1;
+        if (num === a || num === b) {
+            return true;
+        }
+        let c = a + b;
+        while (c <= num) {
+            if (c === num) {
+                return true;
+            }
+            a = b;
+            b = c;
+            c = a + b;
+        }
+        return false;
+    }
+
+    function findFibonacciNumbers(arr) {
+
+        let fiNumbers = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            if (isFibonacci(arr[i])) {
+
+                fiNumbers.push(arr[i]);
+            }
+        }
+        fiNumbers.sort((a, b) => a - b);
+        return fiNumbers;
+    }
+
+    let arr1 = [0, 1, 21, 18, 3, 13 ,28, 29];
+
+   alert(findFibonacciNumbers(arr1));
+
+
+</script>
+</body>
+</html>

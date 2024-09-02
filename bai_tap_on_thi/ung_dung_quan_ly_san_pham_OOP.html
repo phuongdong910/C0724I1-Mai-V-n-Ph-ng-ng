@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .login-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .login-container input {
+            margin: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .login-container button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        input {
+            width: 250px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            padding: 8px 13px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .btn-add {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-update {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #FF9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<h1 class="hidden" id="title">Product Management</h1>
+<br>
+<div class="hidden product-management">
+    <input type="hidden" id="id-product">
+    <input type="text" id="code-product" placeholder="Product Code">
+    <input type="text" id="name-product" placeholder="Product Name">
+    <input type="text" id="brand-product" placeholder="Product Brand">
+    <input type="text" id="price-product" placeholder="Product Price">
+    <button class="btn btn-add" onclick="addProduct()">Add Product</button>
+    <button class="btn btn-edit" onclick="editProduct()">Edit Product</button>
+</div>
+<br>
+
+<table class="hidden product-management">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="list-product"></tbody>
+</table>
+
+<script>
+    let productList = [
+        ["SP001", "Samsung Note 10", "Samsung", 1000],
+        ["SP002", "Nokia S21", "Nokia", 800],
+        ["SP003", "Iphone 14 xs", "Apple", 1200],
+        ["SP004", "Xiaomi Note 10", "Xiaomi", 900]
+    ];
+
+    class Mobile {
+        constructor(code, name, brand, price) {
+            this.code = code;
+            this.name = name;
+            this.brand = brand;
+            this.price = price;
+        }
+
+        getCode() {
+            return this.code;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getBrand() {
+            return this.brand;
+        }
+
+        getPrice() {
+            return this.price;
+        }
+
+        setCode(code) {
+            this.code = code;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setBrand(brand) {
+            this.brand = brand;
+        }
+
+        setPrice(price) {
+            this.price = price;
+        }
+    }
+
+    function showListProduct() {
+        let text = "";
+        productList.forEach((item, index) => {
+            text += "<tr>";
+            text += "<td>" + (index + 1) + "</td>";
+            text += "<td>" + item[0] + "</td>";  // Mã sản phẩm
+            text += "<td>" + item[1] + "</td>";  // Tên sản phẩm
+            text += "<td>" + item[2] + "</td>";  // Hãng sản xuất
+            text += "<td>" + item[3] + "$</td>"; // Giá
+            text += "<td>";
+            text += `<button onclick="deleteProduct(${index})" class="btn btn-delete">Delete</button>`;
+            text += `<button onclick="updateProduct(${index})" class="btn btn-update">Update</button>`;
+            text += "</td>";
+            text += "</tr>";
+        });
+
+        document.getElementById("list-product").innerHTML = text;
+    }
+
+    function addProduct() {
+        let codeProduct = document.getElementById("code-product").value;
+        let nameProduct = document.getElementById("name-product").value;
+        let brandProduct = document.getElementById("brand-product").value;
+        let priceProduct = document.getElementById("price-product").value;
+
+        if (codeProduct && nameProduct && brandProduct && priceProduct) {
+            let newProduct = new Mobile(codeProduct, nameProduct, brandProduct, priceProduct);
+            productList.push([newProduct.getCode(), newProduct.getName(), newProduct.getBrand(), newProduct.getPrice()]);
+            showListProduct();
+            clearForm();
+        } else {
+            alert("Please enter all product details");
+        }
+    }
+
+    function deleteProduct(index) {
+        if (confirm("Are you sure you want to delete?")) {
+            productList.splice(index, 1);
+            showListProduct();
+        }
+    }
+
+    function updateProduct(index) {
+        let product = productList[index];
+        document.getElementById("code-product").value = product[0];
+        document.getElementById("name-product").value = product[1];
+        document.getElementById("brand-product").value = product[2];
+        document.getElementById("price-product").value = product[3];
+        document.getElementById("id-product").value = index;
+    }
+
+    function editProduct() {
+        let index = document.getElementById("id-product").value;
+        let codeProduct = document.getElementById("code-product").value;
+        let nameProduct = document.getElementById("name-product").value;
+        let brandProduct = document.getElementById("brand-product").value;
+        let priceProduct = document.getElementById("price-product").value;
+
+        productList[index] = [codeProduct, nameProduct, brandProduct, priceProduct];
+        showListProduct();
+        clearForm();
+    }
+
+    function clearForm() {
+        document.getElementById("code-product").value = "";
+        document.getElementById("name-product").value = "";
+        document.getElementById("brand-product").value = "";
+        document.getElementById("price-product").value = "";
+        document.getElementById("id-product").value = "";
+    }
+
+    function login() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        // Kiểm tra đăng nhập (giả định là username: admin và password: admin123)
+        if (username === "admin" && password === "admin123") {
+            alert("Login successful!");
+
+            // Hiển thị khu vực quản lý sản phẩm và tiêu đề
+            document.getElementById("title").classList.remove("hidden");
+            document.querySelectorAll(".product-management").forEach(element => {
+                element.classList.remove("hidden");
+            });
+
+            // Ẩn form đăng nhập
+            document.querySelector(".login-container").classList.add("hidden");
+        } else {
+            alert("Login failed. Please try again.");
+        }
+    }
+
+    showListProduct();
+</script>
+
+</body>
+</html>

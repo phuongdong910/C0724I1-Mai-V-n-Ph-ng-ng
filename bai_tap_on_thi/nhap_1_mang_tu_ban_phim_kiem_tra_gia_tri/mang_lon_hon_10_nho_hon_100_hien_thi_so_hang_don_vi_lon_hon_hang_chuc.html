@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n = prompt("Nhập vào n");
+    while (n < 0 || isNaN(n) || n % 1 !== 0) {
+        n = prompt("Nhập lại");
+    }
+    let arr = [];
+
+    for (let i = 0; i < n; i++) {
+        let num = parseInt(prompt(`Nhập vào phẩn tử lớn hơn 10 và nhỏ hơn 100 thứ ${i + 1}`))
+        while (num < 10 || num > 100 || isNaN(num)) {
+            num = parseInt(prompt(`Nhập lại phần tử lớn hơn 10 và nhỏ hơn 100 thứ ${i + 1}`))
+        }
+        arr.push(num);
+    }
+
+    alert("Mảng vừa nhập là: " + arr + " Độ dài mảng là: " + arr.length);
+
+    let result = [];
+
+    for (let i = 0; i < n; i++) {
+        let tens = Math.floor(arr[i] / 10); // Lấy hàng chục
+        let units = arr[i] % 10; // Lấy hàng đơn vị
+        if( units>tens) {
+            result.push(arr[i]);
+        }
+    }
+    if(result.length > 0){
+        alert("Các phần tử có hàng đơn vị lớn hơn hàng chục là: " + result);
+    }else {
+        alert("Không có phần tử nào có hàng đơn vị lớn hơn hàng chục");
+    }
+
+</script>
+</body>
+</html>

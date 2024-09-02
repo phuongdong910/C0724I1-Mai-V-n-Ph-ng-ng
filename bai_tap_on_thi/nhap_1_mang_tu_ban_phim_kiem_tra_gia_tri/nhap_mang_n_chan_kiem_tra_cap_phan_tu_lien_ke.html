@@ -9,6 +9,30 @@
 
 <script>
 
+    let n = prompt("Nhập độ dài");
+    while (n <= 0 || isNaN(n) || n % 2 !== 0) {
+        n = prompt("Nhập lại");
+    }
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(+prompt(`Nhập vào phần tử thứ ${i + 1} `));
+    }
+    alert("Mảng vừa nhập là: " + array + " Độ dài mảng là: " + array.length);
+
+    let hopLe = true;
+    for (let i = 0; i < n; i += 2) {
+        if (array[i] >= array[i + 1]) {
+            hopLe = false;
+            break;
+        }
+    }
+
+    if (hopLe){
+        alert("Ok");
+    }else {
+        alert("NO")
+    }
+
 </script>
 </body>
 </html>

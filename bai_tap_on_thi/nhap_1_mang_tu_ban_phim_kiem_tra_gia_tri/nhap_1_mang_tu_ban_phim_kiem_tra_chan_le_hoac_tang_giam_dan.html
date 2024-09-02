@@ -38,25 +38,25 @@
     // }
 
     // Kiểm tra mảng có tăng dần đều không
+    //
+    // let isIncreasing = true;
+    // let step = array[1] - array[0];
+    //
+    //
+    // for (let i = 1; i < n; i++) {
+    //
+    //     if (array[i] - array [i - 1] !== step || array[i-1] >= array[i]) {
+    //         isIncreasing = false;
+    //         break;
+    //     }
 
-    let isIncreasing = true;
-    let step = array[1] -array[0];
-
-
-    for (let i = 1; i < n; i++){
-
-        if (array[i] <= array[i-1] || array[i] - array [i-1] !== step){
-            isIncreasing = false;
-            break;
-        }
-
-    }
-
-    if ( isIncreasing){
-        alert("OK");
-    }else {
-        alert("NO");
-    }
+    // }
+    //
+    // if (isIncreasing) {
+    //     alert("OK");
+    // } else {
+    //     alert("NO");
+    // }
 
     //Kiểm tra xem mảng có giảm dần đều không
     // let isDecrease = true;
@@ -73,6 +73,40 @@
     // } else {
     //     alert("No")
     // }
+
+
+    // Kiểm tra mảng có tăng dần hay giảm dần không, nếu có trả về Ok, nếu không No
+
+    let isDecrease = true;
+    let isIncrease = true;
+
+    let notEqual = true;
+
+    for (let i = 1; i < n; i++) {
+        if (array[i] === array [i - 1]) {
+            notEqual = false;
+            break;
+        }
+    }
+
+    for (let i = 1; i < n; i++) {
+        if (array[i] > array [i - 1]) {
+            isDecrease = false;
+            break;
+        }
+    }
+    for (let i = 1; i < n; i++) {
+        if (array[i] < array [i - 1]) {
+            isIncrease = false;
+            break;
+        }
+    }
+
+    if ((isDecrease && notEqual) || (isIncrease && notEqual)) {
+        alert("OK");
+    } else {
+        alert("NO");
+    }
 
 
 </script>

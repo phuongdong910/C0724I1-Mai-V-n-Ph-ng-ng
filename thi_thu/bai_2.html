@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function checkString(str) {
+        let words = str.trim().split(/\s+/);
+        if (words.length === 1) {
+            return ("Chuỗi chỉ có 1 từ nên không cần viết tắt");
+        }
+
+        let abbreviation = "";
+        for (let i = 0; i < words.length; i++) {
+            abbreviation += words[i][0].toUpperCase()
+        }
+        return abbreviation;
+    }
+
+    alert(checkString("object Oriented programming"));
+    alert(checkString("Hyper text Markup Language"));
+    alert(checkString("ObjectOriented"));
+</script>
+</body>
+</html>

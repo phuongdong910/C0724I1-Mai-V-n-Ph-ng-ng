@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Viết hàm với tham số là mảng ký tự. Hàm thực hiện kiểm tra-->
+<!--Nếu mảng chỉ chứa ký tự số thì trả về 1				Ví dụ:	[5, 2,8,1,4]-->
+<!--Nêu mảng chỉ chứa ký tự chữ [a,b,…z,A,…..Z] trả về 0				Ví dụ:	["a,"b,"r,"e"]-->
+<!--Ngược lại nếu chứa cả chữ và số  trả về -1				Ví dụ:	[1,"a", "b",4]-->
+
+<script>
+    function checkArayType(arr) {
+        let hasNumber = false;
+        let hasLetter = false;
+
+        for (let char of arr) {
+            if (typeof char === 'number') {
+                hasNumber = true;
+            } else if (typeof char === 'string' && /[a-zA-Z ]/.test(char)) {
+                hasLetter = true;
+            }
+
+            if (hasLetter && hasNumber){
+                return -1;
+            }
+        }
+
+        if(hasNumber){
+            return 1;
+        }
+        if(hasLetter){
+            return 0;
+        }
+    }
+
+    alert(checkArayType([5,'d',5,'d',7,'n','b']));
+    alert(checkArayType([4,6,7,8,9]));
+    alert(checkArayType(['d','a','b','s']));
+    alert()
+</script>
+
+</body>
+</html>

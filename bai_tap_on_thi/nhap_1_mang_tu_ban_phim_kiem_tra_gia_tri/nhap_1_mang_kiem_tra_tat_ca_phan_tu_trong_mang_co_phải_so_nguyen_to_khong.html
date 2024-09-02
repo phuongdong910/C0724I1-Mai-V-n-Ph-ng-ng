@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Kiểm tra tất cả phần tử trong mảng có phải số nguyên tố không </title>
+</head>
+<body>
+
+<script>
+    let n = prompt("Nhập vào n");
+    while (isNaN(n) || n <= 0 || n % 1 !== 0) {
+        n = prompt("Nhập lại n");
+    }
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        arr.push(+prompt(` Nhập vào phần tử thứ ${i + 1}`));
+    }
+    alert("Mảng đã nhập vào là: " + arr + " Chiều dài của mảng là: " + arr.length);
+
+    let allPrime = true;
+
+    for (let i = 0; i < n; i++) {
+        if (arr[i] <= 1) {
+            allPrime = false;
+            break;
+        }
+        let isPrime = true;
+        for (let j = 2; j < arr[i]; j++) {
+            if (arr[i] % j === 0){
+                isPrime = false;
+                break;
+            }
+        }
+        if(!isPrime){
+            allPrime = false;
+            break;
+        }
+    }
+    if(allPrime){
+        alert("OK");
+    }else {
+        alert("NO");
+    }
+
+</script>
+</body>
+</html>

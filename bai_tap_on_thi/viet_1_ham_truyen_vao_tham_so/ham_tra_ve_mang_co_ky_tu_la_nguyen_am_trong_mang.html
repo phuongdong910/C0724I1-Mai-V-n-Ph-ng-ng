@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // function checkString(str) {
+    //     const volwels = ["a", "e", "i", "u", "o", "A", "E", "I", "O", "U"];
+    //     let volwelArray = [];
+    //
+    //     for ( let char of str) {
+    //         if(volwels.includes(char)){
+    //             volwelArray.push(char);
+    //         }
+    //     }
+    //     return volwelArray;
+    // }
+    //
+    // alert(checkString("Hello my honey. I love you"));
+
+    //Hàm trả về mảng các ký tự là nguyên âm có trong mảng.
+    // Lưu ý mảng trả về không chứa các giá trị trùng lặp và ký tự in thường và HOA xem như là giống nhau
+    // Input	Output
+    // "hello"	[e,o]
+    // Codegym DaNang A	[o,e,a]
+    function checkString(str) {
+        const vowels = ["a","e", "i", "o", "u"];
+        let result = new  Set(); //Su dung Set de loại bỏ trùng lặp
+
+        for (let char of str.toLowerCase()){
+            if(vowels.includes(char)){
+                result.add(char);    // Thêm ký tự vào Set tránh trùng lặp
+            }
+        }
+        return Array.from(result); // Chuyển Set thành mảng và trả về kết quả
+
+    }
+
+    document.write(checkString("I Want to KISS you"))
+
+</script>
+</body>
+</html>

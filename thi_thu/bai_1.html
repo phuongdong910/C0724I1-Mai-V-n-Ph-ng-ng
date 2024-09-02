@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Nhập từ bàn phím mảng số nguyên gồm n phần tử (n<=50). Hiển thị ra màn hình-->
+<!--danh sách các phần tử của mảng, hiển thị giá trị trung bình của các phần tử chia hết-->
+<!--cho 5 ở vị trí chia hết cho 3 ( phần tử có index chia hết cho 3)-->
+<!--Ví dụ: [15,2,3,5,10,15,7,8,9,10]. Kết quả sau khi thực hiện là: (15+5+10)/3) = 10-->
+
+<script>
+    let n = prompt("Nhập n phần tử");
+    while (isNaN(n) || n <= 0 || n > 50 || n % 1 !== 0) {
+        n = prompt(" Nhập lại n");
+    }
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(+prompt(` Nhập vào phần tu thứ ${i + 1}`));
+    }
+    alert("Mảng vừa nhập là: " + array + " Chiều dài mảng là: " + array.length);
+
+    let sumNumberDivision5AtIndex3 = 0;
+    let sumIndex = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 5 === 0 && i % 3 === 0) {
+            sumNumberDivision5AtIndex3 += array[i];
+            sumIndex += 1;
+        }
+    }
+
+
+    alert("Giá trị trung bình của các phần tử chia hết cho 5 ở vị trí chia hết cho 3 là: " + sumNumberDivision5AtIndex3 / sumIndex);
+
+</script>
+</body>
+</html>

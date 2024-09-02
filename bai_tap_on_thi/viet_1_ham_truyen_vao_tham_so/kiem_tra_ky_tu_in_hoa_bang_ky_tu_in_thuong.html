@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function checkString(str) {
+        let upperCaseCount = 0;
+        let lowerCaseCount = 0;
+        //Duyệt qua từng ký tự trong chuỗi
+        for (let char of str) {
+            if (char >= "A" && char <= "Z") {
+                upperCaseCount++;
+            }else if( char >= "a" && char <= "z"){
+                lowerCaseCount++;
+            }
+        }
+        return upperCaseCount === lowerCaseCount;
+    }
+
+    alert(checkString("AbcnfhAFBMZ"));
+    alert(checkString("ABCDefgh"));
+</script>
+</body>
+</html>
