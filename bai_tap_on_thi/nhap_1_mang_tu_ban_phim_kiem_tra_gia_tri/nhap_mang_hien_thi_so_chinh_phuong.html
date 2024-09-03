@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Nhập 1 mảng từ bàn phím với độ dài n-->
+<!--Hiện thị mảng sau khi thêm mới các phần tử-->
+<!--Hiện thị các số chính phương có trong mảng ( Số chính phương là các số ví dụ 1,4,9,16,25,36,49……)-->
+
+<script>
+  let n = prompt("Nhập độ dài");
+  while (n <= 0 || isNaN(n) || n % 1 !== 0) {
+    n = prompt("Nhập lại");
+  }
+  let array = [];
+  for (let i = 0; i < n; i++) {
+    array.push(+prompt(`Nhập vào phần tử thứ ${i + 1} `));
+  }
+  alert("Mảng vừa nhập là: " + array + " Độ dài mảng là: " + array.length);
+
+  function isSquareNumber(num) {
+    let sqrt = Math.sqrt(num);
+    return sqrt === Math.floor(sqrt);
+  }
+
+  let squareNumbers = array.filter(isSquareNumber);
+  if (squareNumbers.length > 0) {
+    alert("Các số chính phương có trong mảng là: " + squareNumbers);
+  } else {
+    alert("Không có số chính phương trong mảng.");
+  }
+</script>
+
+</body>
+</html>

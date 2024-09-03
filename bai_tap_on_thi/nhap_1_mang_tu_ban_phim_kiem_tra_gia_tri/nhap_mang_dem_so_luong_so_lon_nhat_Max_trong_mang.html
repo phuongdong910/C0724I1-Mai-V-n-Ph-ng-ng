@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Nhập 1 mảng từ bàn phím với độ dài n-->
+<!--Hiện thị mảng sau khi thêm mới các phần tử-->
+<!--Đếm số lượng số lớp nhất trong mảng. Ví dụ [1,3,6,3,6,6,6] =>
+số lượng số lớn nhất trong mảng là 4 ( vì 6 là số lớn nhất và xuất hiện 4 lần)-->
+
+<script>
+    let n = prompt("Nhập độ dài");
+    while (n <= 0 || isNaN(n) || n % 1 !== 0) {
+        n = prompt("Nhập lại");
+    }
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(+prompt(`Nhập vào phần tử thứ ${i + 1} `));
+    }
+    alert("Mảng vừa nhập là: " + array + " Độ dài mảng là: " + array.length);
+
+    // Tìm số lớn nhất trong mảng
+    let maxNum = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > maxNum) {
+            maxNum = array[i];
+        }
+    }
+
+    // Đếm số lượng lần xuất hiện của số lớn nhất
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === maxNum) {
+            count++;
+        }
+    }
+
+    // Hiển thị kết quả
+    alert("Số  lớn nhất trong mảng là: " + maxNum + " Số lần xuất hiện của số lớn nhất là: " + count);
+</script>
+
+</body>
+</html>

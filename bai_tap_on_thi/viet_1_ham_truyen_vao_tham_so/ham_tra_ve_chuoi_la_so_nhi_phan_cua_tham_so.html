@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Viết 1 hàm truyền vào 1 tham số (với tham dạng số), (changeBinary(num))-->
+<!--Hàm trả về chuỗi là số nhị phân của tham số truyền vào-->
+<!--Ví dụ: changeBinary(2) => "10"-->
+<!--Ví dụ: changeBinary(10) => "1010"-->
+
+
+<script>
+    function changeBinary(num) {
+        // Kiểm tra nếu num không phải là số nguyên dương
+        if (num < 0 ||(num % 1 !== 0)) {
+            return "Vui lòng nhập số nguyên không âm";
+        }
+
+        // Xử lý trường hợp num = 0
+        if (num === 0) {
+            return "0";
+        }
+
+        let binaryString = ""; // Chuỗi nhị phân kết quả
+        let number = num; // Sao chép số để xử lý
+
+        // Chia số cho 2 và lấy phần dư để xây dựng chuỗi nhị phân
+        while (number > 0) {
+            let remainder = number % 2; // Lấy phần dư
+            binaryString = remainder + binaryString; // Thêm phần dư vào chuỗi nhị phân
+            number = Math.floor(number / 2); // Chia số cho 2 và làm tròn xuống
+        }
+
+        return binaryString;
+    }
+
+    // Ví dụ sử dụng
+    console.log(changeBinary(2));  // "10"
+    console.log(changeBinary(10)); // "1010"
+    console.log(changeBinary(0));  // "0"
+    console.log(changeBinary(245));  //
+
+</script>
+</body>
+</html>

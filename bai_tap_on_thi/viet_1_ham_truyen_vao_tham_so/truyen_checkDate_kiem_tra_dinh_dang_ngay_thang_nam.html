@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Viết hàm truyền vào tham số là một chuỗi.. checkDate(dateString)-->
+<!--Kiểm tra xem chuối nhập vào dateString có phải là định dạng của ngày tháng năm hay không ( dd/mm/yyyy)-->
+<!--Nếu đúng return true, sai return false-->
+
+<script>
+    function checkDate(dateString) {
+        // Kiểm tra độ dài chuỗi
+        if (dateString.length !== 10) {
+            return false;
+        }
+
+        // Tách ngày, tháng, năm từ chuỗi
+        let day = parseInt(dateString.substring(0, 2), 10);
+        let month = parseInt(dateString.substring(3, 5), 10);
+        let year = parseInt(dateString.substring(6), 10);
+
+        // Kiểm tra định dạng dd/mm/yyyy
+        if (dateString[2] !== '/' || dateString[5] !== '/') {
+            return false;
+        }
+
+        // Kiểm tra giá trị của ngày, tháng, năm
+        if (month < 1 || month > 12) {
+            return false;
+        }
+
+        let daysInMonth = [31, 28 + (isLeapYear(year) ? 1 : 0), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        if (day < 1 || day > daysInMonth[month - 1]) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Hàm kiểm tra năm nhuận
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    // Ví dụ sử dụng
+    console.log(checkDate("29/02/2024")); // true (2024 là năm nhuận)
+    console.log(checkDate("30/02/2024")); // false (tháng 2 không có ngày 30)
+    console.log(checkDate("31/04/2023")); // false (tháng 4 chỉ có 30 ngày)
+    console.log(checkDate("15/08/2023")); // true
+    console.log(checkDate("15-08-2023")); // false (không đúng định dạng)
+
+    //Kiểm tra độ dài chuỗi:
+    //
+    // if (dateString.length !== 10) kiểm tra xem chuỗi có đúng độ dài 10 ký tự không (2 ký tự cho ngày, 2 ký tự cho tháng, 4 ký tự cho năm, và 2 ký tự cho dấu gạch chéo).
+    // Tách ngày, tháng, năm từ chuỗi:
+    //
+    //     parseInt(dateString.substring(0, 2), 10) lấy hai ký tự đầu tiên và chuyển thành số nguyên cho ngày.
+    // parseInt(dateString.substring(3, 5), 10) lấy hai ký tự ở vị trí 3 đến 4 cho tháng.
+    // parseInt(dateString.substring(6), 10) lấy bốn ký tự từ vị trí 6 cho năm.
+    //     Kiểm tra định dạng dd/mm/yyyy:
+    //
+    // if (dateString[2] !== '/' || dateString[5] !== '/') kiểm tra các ký tự ở vị trí thứ 3 và thứ 6 phải là dấu gạch chéo '/'.
+    //     Kiểm tra giá trị của ngày, tháng, năm:
+    //
+    // Kiểm tra tháng có nằm trong khoảng từ 1 đến 12 không.
+    //     let daysInMonth chứa số ngày trong từng tháng, điều chỉnh cho năm nhuận nếu cần.
+    //     Kiểm tra ngày có nằm trong phạm vi hợp lệ cho tháng đó không.
+    //     Hàm kiểm tra năm nhuận:
+    //
+    //     isLeapYear(year) kiểm tra năm có phải năm nhuận hay không.
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Viết 1 hàm truyền vào 1 tham số (với tham số là một chuỗi), (checkString(str))-->
+<!--Hàm trả về  một chuỗi là tất cả các ký tự in Hoa có trong chuỗi-->
+<!--Ví dụ: Hello CoDeGym => HCDG					ưu tiên		 sử dụng vòng lặp và câu lệnh if nếu có thể-->
+
+<script>
+    function checkString(str) {
+        let result = ""; // Khởi tạo chuỗi kết quả
+
+        // Duyệt qua từng ký tự của chuỗi đầu vào
+        for (let i = 0; i < str.length; i++) {
+            let char = str[i]; // Lấy ký tự tại vị trí i
+
+            // Kiểm tra xem ký tự có phải là chữ cái in hoa không
+            if (char >= 'A' && char <= 'Z') {
+                result += char; // Thêm ký tự vào kết quả nếu là chữ cái in hoa
+            }
+        }
+
+        return result; // Trả về chuỗi kết quả
+    }
+
+    // Ví dụ sử dụng
+    console.log(checkString("Hello CoDeGym")); // HCDG
+    console.log(checkString("JavaScript is Fun")); // JSF
+    console.log(checkString("Code with We")); // CWO
+</script>
+</body>
+</html>

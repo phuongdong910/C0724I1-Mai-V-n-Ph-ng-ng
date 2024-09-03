@@ -5,8 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-
 <script>
+    function xetTamGiac(x,y,z) {
+        if (x > 0 && y > 0 && z > 0 && x + y > z && x + z > y && y + z > x) {
+            if (x * x + y * y === z * z || x * x + z * z === y * y || y * y + z * z === x * x) {
+                document.write("đây là 3 cạnh của tam giác vuông");
+            } else {
+                document.write("chỉ là 3 cạnh của tam giác")
+            }
+        } else {
+            document.write("đây không phải 3 cạnh cua tam giac")
+        }
+    }
+    let x = prompt(" nhập cạnh a");
+    let y = prompt(" nhập cạnh b");
+    let z = prompt("nhập cạnh c ");
+    while ( isNaN(x) || isNaN(y) || isNaN(z)) {
+        x = prompt(" nhập lại ");
+        y = prompt(" nhập lại");
+        z = prompt(" nhập lại ");
+    }
+    xetTamGiac(x,y,z);
 
 </script>
 

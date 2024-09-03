@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Bài 3	Viết 1 hàm truyền vào 1 tham số findMaxNumber(n)-->
+<!--Hàm thực hiện các công việc-->
+<!--+Kiểm tra n phải là 1 số có 4 chữ số?-->
+<!--+ Nếu không thoả mãn là 4 chữ số thì trả về -1-->
+<!--+ Nếu  thoả mãn là 4 chữ số tiếp tục thực hiện công việc:-->
+<!--Tìm ra một số có 3 chữ số từ n ( bằng cách xoá đi một chữ số bất kỳ của n) để có được 1 số là lớn nhất-->
+<!--Ví dụ	Input	Output-->
+<!--923	-1-->
+<!--1923	923-->
+<!--9371	971-->
+
+
+<script>
+    let n;
+    do {
+        n = prompt("nhập n");
+    } while (isNaN(n));
+    m = n.split("");
+    function kiemTra(m){
+        if (m.length == 4){
+            if (m[0]>=m[1]){
+                let min = m[1];
+                viTri = 1;
+                for (let i=1;i<m.length;i++){
+                    if (min>m[i]){
+                        viTri = i;
+                    }
+                }
+                m.splice(viTri,1);
+            } else {
+                m.splice(0,1);
+            }
+            return m.join("");
+        } else {
+            return -1;
+        }
+    }
+    alert(kiemTra(m));
+
+    ///Cách 2
+
+    // function kiemTra(n) {
+    //     let m = n.toString().split("");
+    //     if (m.length == 4) {
+    //         if (m[0] >= m[1]) {
+    //             let min = m[1];
+    //             viTri = 1;
+    //             for (let i = 1; i < m.length; i++) {
+    //                 if (min > m[i]) {
+    //                     viTri = i;
+    //                 }
+    //             }
+    //             m.splice(viTri, 1);
+    //         } else {
+    //             m.splice(0, 1);
+    //         }
+    //         return m.join("");
+    //     } else {
+    //         return -1;
+    //     }
+    // }
+    //
+    // alert(kiemTra());
+</script>
+
+
+c
+</body>
+</html>

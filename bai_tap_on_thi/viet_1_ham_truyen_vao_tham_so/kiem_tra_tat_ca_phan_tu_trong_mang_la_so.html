@@ -10,28 +10,26 @@
 <!--Viết 1 hàm truyền vào 1 tham số (với tham  số mảng), (checkArray(array))-->
 <!--Hàm trả về  True nếu tất cả các phần tử trong mảng là số, ngược lại trả về False-->
 <!--Ví dụ: checkArray([111,12,34,2] => True-->
-<!--Ví dụ: checkArray([1a,12,34,2] => False				Cách tính =>-->
+<!--Ví dụ: checkArray([1a,12,34,2] => False	-->
 
 <script>
-    function checkString(str) {
-        let isNumber = true;
-        for (let char of str){
-            if (!(char>=0 && char<=9)){
-                isNumber = false;
-                break;
+    function checkArray(array) {
+        // Duyệt qua từng phần tử của mảng
+        for (let i = 0; i < array.length; i++) {
+            // Kiểm tra nếu phần tử không phải là số
+            if (typeof array[i] !== 'number' || isNaN(array[i])) {
+                return false; // Nếu có phần tử không phải là số, trả về false
             }
         }
-
-        if(isNumber){
-            return true;
-        }else {
-            return  false;
-        }
-
+        return true; // Nếu tất cả phần tử là số, trả về true
     }
 
-    alert(checkString("ghghghgh747474"));
-    alert(checkString("4444444444576"))
+    // Ví dụ sử dụng
+    console.log(checkArray([111, 12, 34, 2])); // True
+    console.log(checkArray([1, 12, '34', 2])); // False
+    console.log(checkArray([111, 12, 34, NaN])); // False
+    console.log(checkArray(['1a',12,34,2])); // False
+
 </script>
 </body>
 </html>
