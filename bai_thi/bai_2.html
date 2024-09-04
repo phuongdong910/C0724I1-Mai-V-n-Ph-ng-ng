@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function tinhTongCacUocSo(so) {
+        let tong = 0;
+
+        for (let i = 0; i <= Math.sqrt(so); i++) {
+            if (so % i === 0) {
+                if (i !== so) {
+                    tong += i;
+                }
+                if (i !== 1 && i !== so / i && i !== so) {
+                    tong += so / i;
+                }
+            }
+        }
+        return tong;
+    }
+
+    function laHaiSoThanThiet(so1, so2) {
+        return tinhTongCacUocSo(so1) ===so2 && tinhTongCacUocSo(so2) === so1;
+
+    }
+
+    let so1 = 220;
+    let so2 = 284;
+
+    alert(laHaiSoThanThiet(so1,so2));
+
+    let so3 = 567;
+    let so4 = 789;
+    alert(laHaiSoThanThiet(so3,so4));
+
+</script>
+</body>
+</html>

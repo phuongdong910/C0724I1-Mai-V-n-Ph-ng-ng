@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let n = prompt("Nhập vào n");
+    while (isNaN(n) || n <= 0 || n % 1 !== 0 || n > 20) {
+        n = prompt("Nhập lại n");
+    }
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        arr.push(+prompt(` Nhập vào phần tử thứ ${i + 1}`));
+    }
+    alert("Mảng đã nhập vào là: " + arr + " Chiều dài của mảng là: " + arr.length);
+
+    let tongSoLeOVitriChan = 0;
+    let count = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 !== 0 && i % 2 === 0) {
+            tongSoLeOVitriChan += arr[i];
+            count++;
+        }
+    }
+
+    let trungBinhCong = tongSoLeOVitriChan / count;
+
+    alert("tổng số lẻ ở vị trí chẵn" + tongSoLeOVitriChan);
+    alert(count);
+
+    alert(" Trung bình cộng các số lẻ ở vị trí chẵn là: " + trungBinhCong);
+
+</script>
+</body>
+</html>

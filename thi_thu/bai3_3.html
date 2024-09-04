@@ -27,7 +27,10 @@
         .btn-add, .btn-borrow, .btn-show, .btn-add-new {
             background-color: #4CAF50;
             color: #dddddd;
-
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-add-new {
@@ -156,7 +159,7 @@
             let newBook = new Book(codeBook, nameBook, yearBook, quantityBook, statusBook);
             bookList.push(newBook);
             showListBook();
-            alert("Thêm sách thành công");
+            alert("Book added successfully!");
         }
     }
 
@@ -172,7 +175,7 @@
             bookList.push(newBook);
             showListBook();
             clearForm();
-            alert(" Thêm sách thành công");
+            alert("Sách thêm thành công");
         }
     }
 

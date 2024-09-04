@@ -6,72 +6,119 @@
 </head>
 <body>
 
-<!--Viết hàm truyền vào tham số là một chuỗi.. checkDate(dateString)-->
-<!--Kiểm tra xem chuối nhập vào dateString có phải là định dạng của ngày tháng năm hay không ( dd/mm/yyyy)-->
-<!--Nếu đúng return true, sai return false-->
+
+<h1>Quản lý sách</h1>
+<input type="text" id="id-book" hidden>
+
+<input type="text" id="code-book" placeholder="Mã sách">
+<input type="text" id="name-book" placeholder="Tên sách">
+<input type="number" id="year-book" placeholder="Năm xuất bản">
+<input type="number" id="quantity-book" placeholder="Số quyển">
+<br><br>
+
+<button class="btn-add" type="button" onclick="addBook()">Thêm sách đã có</button>
+<button class="btn-add-new" type="button" onclick="addNewBook()">Thêm sách mới</button>
+<button class="btn-borrow" type="button" onclick="borrowBook()">Mượn sách</button>
+<button class="btn-show" type="button" onclick="showBooksWithMostQuantity()">Hiển thị sách nhiều nhất</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Mã sách</th>
+        <th>Tên sách</th>
+        <th>Năm xuất bản</th>
+        <th>Số quyển</th>
+        <th>Tình trạng</th>
+    </tr>
+    </thead>
+    <tbody id="list-book">
+    </tbody>
+</table>
 
 <script>
-    function checkDate(dateString) {
-        // Kiểm tra độ dài chuỗi
-        if (dateString.length !== 10) {
-            return false;
+    class Book {
+        constructor(code, name, year, quantity, status) {
+            this.code = code;
+            this.name = name;
+            this.year = year;
+            this.quantity = quantity;
+            this.status = status;
         }
 
-        // Tách ngày, tháng, năm từ chuỗi
-        let day = parseInt(dateString.substring(0, 2), 10);
-        let month = parseInt(dateString.substring(3, 5), 10);
-        let year = parseInt(dateString.substring(6), 10);
-
-        // Kiểm tra định dạng dd/mm/yyyy
-        if (dateString[2] !== '/' || dateString[5] !== '/') {
-            return false;
+        getCode() {
+            return this.code;
         }
 
-        // Kiểm tra giá trị của ngày, tháng, năm
-        if (month < 1 || month > 12) {
-            return false;
+        getName() {
+            return this.name;
         }
 
-        let daysInMonth = [31, 28 + (isLeapYear(year) ? 1 : 0), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-        if (day < 1 || day > daysInMonth[month - 1]) {
-            return false;
+        getYear() {
+            return this.year;
         }
 
-        return true;
+        getQuantity() {
+            return this.quantity;
+        }
+
+        getStatus() {
+            return this.status;
+        }
+
+        setCode(code) {
+            this.code = code;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setYear(year) {
+            this.year = year;
+        }
+
+        setQuantity(quantity) {
+            this.quantity = quantity;
+            this.status = quantity > 0;
+        }
+
+        setStatus(status) {
+            this.status = status;
+        }
     }
 
-    // Hàm kiểm tra năm nhuận
-    function isLeapYear(year) {
-        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    let bookList = [
+        new Book("123456", "Toan", 2000, 3, true),
+        new Book("23456", "Van", 1998, 4, true),
+        new Book("37456", "Tieng Anh", 1999, 5, false),
+    ];
+
+    function showListBook() {
+        let text = "";
+        bookList.forEach((item, index) => {
+            text += "<tr>";
+            text += "<td>" + (index + 1) + "</td>";
+            text += "<td>" + item.getCode() + "</td>";
+            text += "<td>" + item.getName() + "</td>";
+            text += "<td>" + item.getYear() + "</td>";
+            text += "<td>" + item.getQuantity() + "</td>";
+            text += "<td>" + (item.getStatus() ? "true" :"false") + "</td>";
+            text += "</tr>";
+        });
+        document.getElementById("list-book").innerHTML = text;
     }
 
-    // Ví dụ sử dụng
-    console.log(checkDate("29/02/2024")); // true (2024 là năm nhuận)
-    console.log(checkDate("30/02/2024")); // false (tháng 2 không có ngày 30)
-    console.log(checkDate("31/04/2023")); // false (tháng 4 chỉ có 30 ngày)
-    console.log(checkDate("15/08/2023")); // true
-    console.log(checkDate("15-08-2023")); // false (không đúng định dạng)
+    function addNewBook() {
+        let codeBook = prompt(" Nhập mã sách: ");
+        let nameBook = prompt(" Nhập tên sách:");
+        let yearBook = parseInt(prompt(" Nhập năm xuất bản:"));
+        let quantityBook = parseInt(prompt("Nhập số lượng"));
+        let statusBook = quantityBook > 0;
 
-    //Kiểm tra độ dài chuỗi:
-    //
-    // if (dateString.length !== 10) kiểm tra xem chuỗi có đúng độ dài 10 ký tự không (2 ký tự cho ngày, 2 ký tự cho tháng, 4 ký tự cho năm, và 2 ký tự cho dấu gạch chéo).
-    // Tách ngày, tháng, năm từ chuỗi:
-    //
-    //     parseInt(dateString.substring(0, 2), 10) lấy hai ký tự đầu tiên và chuyển thành số nguyên cho ngày.
-    // parseInt(dateString.substring(3, 5), 10) lấy hai ký tự ở vị trí 3 đến 4 cho tháng.
-    // parseInt(dateString.substring(6), 10) lấy bốn ký tự từ vị trí 6 cho năm.
-    //     Kiểm tra định dạng dd/mm/yyyy:
-    //
-    // if (dateString[2] !== '/' || dateString[5] !== '/') kiểm tra các ký tự ở vị trí thứ 3 và thứ 6 phải là dấu gạch chéo '/'.
-    //     Kiểm tra giá trị của ngày, tháng, năm:
-    //
-    // Kiểm tra tháng có nằm trong khoảng từ 1 đến 12 không.
-    //     let daysInMonth chứa số ngày trong từng tháng, điều chỉnh cho năm nhuận nếu cần.
-    //     Kiểm tra ngày có nằm trong phạm vi hợp lệ cho tháng đó không.
-    //     Hàm kiểm tra năm nhuận:
-    //
-    //     isLeapYear(year) kiểm tra năm có phải năm nhuận hay không.
+
+    }
+    showListBook()
 </script>
 </body>
 </html>

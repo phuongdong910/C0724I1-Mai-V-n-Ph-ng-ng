@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function tinhTongCacUocSo(num) {
+        let sum = 0;
+
+        for (let i = 0; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) {
+                if (i !== num) {
+                    sum += i;
+                }
+                if (i !== 1 && i !== num / i && i !== num) {
+                    sum += num / i;
+                }
+            }
+        }
+        return sum;
+    }
+
+    function laHaiSoThanThiet(num1, num2) {
+        return tinhTongCacUocSo(num1) ===num2 && tinhTongCacUocSo(num2) === num1;
+
+    }
+
+    let num1 = 220;
+    let num2 = 284;
+
+    alert(laHaiSoThanThiet(num1,num2));
+
+    let num3 = 123;
+    let num4 = 456;
+    alert(laHaiSoThanThiet(num3,num4));
+
+    //  Giai thich chi tiet
+
+    // Hàm tính tổng các ước số của một số (không bao gồm chính số đó)
+    function sumOfDivisors(num) {
+        let sum = 0; // Khởi tạo biến tổng ước số bằng 0
+
+        // Duyệt từ 1 đến căn bậc hai của num
+        for (let i = 1; i <= Math.sqrt(num); i++) {
+            // Kiểm tra nếu i là ước số của num
+            if (num % i === 0) {
+                // Nếu i khác num thì thêm i vào tổng ước số
+                if (i !== num) {
+                    sum += i;
+                }
+                // Kiểm tra và thêm ước số đối xứng num / i vào tổng ước số
+                // Lưu ý: tránh cộng num hoặc khi i bằng num / i
+                if (i !== 1 && i !== num / i && num / i !== num) {
+                    sum += num / i;
+                }
+            }
+        }
+        return sum; // Trả về tổng các ước số
+    }
+
+    // Hàm kiểm tra hai số có phải là cặp số thân thiết không
+    function areFriendlyNumbers(num1, num2) {
+        // So sánh tổng các ước số của num1 với num2 và ngược lại
+        return sumOfDivisors(num1) === num2 && sumOfDivisors(num2) === num1;
+    }
+
+    // Ví dụ sử dụng hàm
+    let num1 = 220; // Khai báo số thứ nhất
+    let num2 = 284; // Khai báo số thứ hai
+
+    // Kiểm tra và in ra kết quả
+    console.log(areFriendlyNumbers(num1, num2)); // Output: true (vì 220 và 284 là cặp số thân thiết)
+
+</script>
+</body>
+</html>
