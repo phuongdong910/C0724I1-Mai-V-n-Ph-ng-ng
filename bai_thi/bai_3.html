@@ -210,14 +210,6 @@
     }
 
     function validateBook(code, name, year, quantity) {
-        if (code.length !== 5) {
-            return false;
-        }
-
-        if (code[0] < '1' || code[0] > '5') {
-            return false;
-        }
-
         if (!name) {
             alert("Khong được để trống tên sách.");
             return false;
