@@ -139,7 +139,7 @@
             text += "<td>" + item.getName() + "</td>";
             text += "<td>" + item.getYear() + "</td>";
             text += "<td>" + item.getQuantity() + "</td>";
-            text += "<td>" + (item.getStatus() ? "true" :"false") + "</td>";
+            text += "<td>" + (item.getStatus() ? "true" : "false") + "</td>";
             text += "</tr>";
         });
         document.getElementById("list-book").innerHTML = text;
@@ -171,7 +171,6 @@
             let newBook = new Book(codeBook, nameBook, yearBook, quantityBook, statusBook);
             bookList.push(newBook);
             showListBook();
-            clearForm();
             alert(" Thêm sách thành công");
         }
     }
@@ -210,19 +209,15 @@
         document.getElementById("list-book").innerHTML = text;
     }
 
-    function clearForm() {
-        document.getElementById("code-book").value = "";
-        document.getElementById("name-book").value = "";
-        document.getElementById("year-book").value = "";
-        document.getElementById("quantity-book").value = "";
-        document.getElementById("status-book").checked = true;
-    }
-
     function validateBook(code, name, year, quantity) {
-        if (!/^[1-5]\d{4}$/.test(code)) {
-            alert("Mã sách không hợp lệ. Phải có 5 chữ số bắt đầu từ 1-5.");
+        if (code.length !== 5) {
             return false;
         }
+
+        if (code[0] < '1' || code[0] > '5') {
+            return false;
+        }
+
         if (!name) {
             alert("Khong được để trống tên sách.");
             return false;
