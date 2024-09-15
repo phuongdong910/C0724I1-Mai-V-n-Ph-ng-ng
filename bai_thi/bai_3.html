@@ -179,6 +179,9 @@
         let codeBook = prompt(" Nhập mã sách mượn:");
         let book = bookList.find(b => b.getCode() === codeBook);
 
+        // để tìm kiếm trong mảng đối tượng sách có mã số khớp với codeBook
+
+
         if (book) {
             if (book.getQuantity() > 0) {
                 book.setQuantity(book.getQuantity() - 1);
@@ -194,7 +197,11 @@
 
     function showBooksWithMostQuantity() {
         let maxQuantity = Math.max(...bookList.map(b => b.getQuantity()));
+        // tạo ra một mảng chứa số lượng của tất cả các quyển sách trong book list.  trả về giá trị lớn nhất trong mảng đó.
+
         let booksWithMostQuantity = bookList.filter(b => b.getQuantity() === maxQuantity);
+        // tạo một mảng mới chứa tất cả các quyển sách có số lượng bằng với maxQuantity.
+
         let text = "";
         booksWithMostQuantity.forEach((item, index) => {
             text += "<tr>";

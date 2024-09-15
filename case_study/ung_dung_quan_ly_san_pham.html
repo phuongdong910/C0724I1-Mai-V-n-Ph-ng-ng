@@ -227,11 +227,11 @@
         ["SP001", "Samsung Note 10", "Samsung", 1000],
         ["SP002", "Nokia S21", "Nokia", 800],
         ["SP003", "Iphone 14 xs", "Apple", 1200],
-        ["SP004", "Xiaomi Note 10", "Xiaomi", 900],
-        ["SP001", "Samsung Note 10", "Samsung", 1000],
+        ["SP004", "Xiaomi Note 11", "Xiaomi", 900],
+        ["SP001", "Samsung Note 13", "Samsung", 1200],
         ["SP002", "Nokia S21", "Nokia", 800],
-        ["SP003", "Iphone 14 xs", "Apple", 1200],
-        ["SP004", "Xiaomi Note 10", "Xiaomi", 900]
+        ["SP003", "Iphone 15 Pro", "Apple", 1700],
+        ["SP004", "Xiaomi Note 10", "Xiaomi", 800]
     ];
 
     let isLoggedIn = false;
@@ -363,7 +363,7 @@
             product[1].toLowerCase().includes(query) ||
             product[2].toLowerCase().includes(query)
         );
-        let text = "";.77
+        let text = "";
         filteredProducts.forEach((item, index) => {
             text += "<tr>";
             text += "<td>" + (index + 1) + "</td>";
