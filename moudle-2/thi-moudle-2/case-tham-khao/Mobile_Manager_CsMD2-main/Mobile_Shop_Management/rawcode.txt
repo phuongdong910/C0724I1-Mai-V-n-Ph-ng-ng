@@ -1,0 +1,1719 @@
+package controller;
+
+public class Admin {
+    private static Admin instance;
+    private String username;
+    private String password;
+
+    private Admin() {
+        this.username = "dohoang";
+        this.password = "adminpro";
+    }
+
+    public static Admin getInstance() {
+        if (instance == null) {
+            instance = new Admin();
+        }
+        return instance;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}
+
+package controller;
+
+public class Customer {
+    private String username;
+    private String password;
+
+    public Customer(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}
+
+package entities;
+
+public class Charger extends Product {
+    private String cableType;
+    private String cableLength;
+
+    private Charger(Builder builder) {
+        super(builder);
+        this.cableType = builder.cableType;
+        this.cableLength = builder.cableLength;
+    }
+
+    public String getCableType() {
+        return cableType;
+    }
+
+    public void setCableType(String cableType) {
+        this.cableType = cableType;
+    }
+
+    public String getCableLength() {
+        return cableLength;
+    }
+
+    public void setCableLength(String cableLength) {
+        this.cableLength = cableLength;
+    }
+
+    public static class Builder extends Product.Builder<Builder> {
+        private String cableType;
+        private String cableLength;
+
+        public Builder setCableType(String cableType) {
+            this.cableType = cableType;
+            return this;
+        }
+
+        public Builder setCableLength(String cableLength) {
+            this.cableLength = cableLength;
+            return this;
+        }
+
+        @Override
+        public Charger build() {
+            return new Charger(this);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Charger{" +
+                "cableType='" + cableType + '\'' +
+                ", cableLength='" + cableLength + '\'' +
+                '}';
+    }
+
+    @Override
+    public String toCSV() {
+        return super.toCSV() + "," + cableType + "," + cableLength;
+    }
+}
+
+package entities;
+
+public class Mobile extends Product {
+    private String os;
+
+    private Mobile(Builder builder) {
+        super(builder);
+        this.os = builder.os;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public static class Builder extends Product.Builder<Builder> {
+        private String os;
+
+        public Builder setOs(String os) {
+            this.os = os;
+            return this;
+        }
+
+        @Override
+        public Mobile build() {
+            return new Mobile(this);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Mobile{" + "os=" + os + '}';
+    }
+
+    @Override
+    public String toCSV() {
+        return super.toCSV() + "," + os;
+    }
+}
+
+package entities;
+
+public class MobileCase extends Product {
+    private String useFor;
+
+    private MobileCase(Builder builder) {
+        super(builder);
+        this.useFor = builder.useFor;
+    }
+
+    public String getUseFor() {
+        return useFor;
+    }
+
+    public void setUseFor(String useFor) {
+        this.useFor = useFor;
+    }
+
+    public static class Builder extends Product.Builder<Builder> {
+        private String useFor;
+
+        public Builder setUseFor(String useFor) {
+            this.useFor = useFor;
+            return this;
+        }
+
+        @Override
+        public MobileCase build() {
+            return new MobileCase(this);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "MobileCase{" +
+                "useFor='" + useFor + '\'' +
+                '}';
+    }
+
+    @Override
+    public String toCSV() {
+        return super.toCSV() + "," + useFor;
+    }
+}
+
+package entities;
+
+import java.util.Objects;
+
+import static service.CurrencyFormatter.formatToVND;
+
+public abstract class Product {
+    private String name;
+    private String brand;
+    private String id;
+    private String color;
+    private int price;
+    private int stock;
+    private String status;
+
+    protected Product(Builder<?> builder) {
+        this.name = builder.name;
+        this.brand = builder.brand;
+        this.id = builder.id;
+        this.color = builder.color;
+        this.price = builder.price;
+        this.stock = builder.stock;
+        this.status = builder.status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public abstract static class Builder<T extends Builder<T>> {
+        protected String name;
+        protected String brand;
+        protected String id;
+        protected String color;
+        protected int price;
+        protected int stock;
+        protected String status;
+
+        public T setName(String name) {
+            this.name = name;
+            return (T) this;
+        }
+
+        public T setBrand(String brand) {
+            this.brand = brand;
+            return (T) this;
+        }
+
+        public T setId(String id) {
+            this.id = id;
+            return (T) this;
+        }
+
+        public T setColor(String color) {
+            this.color = color;
+            return (T) this;
+        }
+
+        public T setPrice(int price) {
+            this.price = price;
+            return (T) this;
+        }
+
+        public T setStock(int stock) {
+            this.stock = stock;
+            return (T) this;
+        }
+
+        public T setStatus(String status) {
+            this.status = status;
+            return (T) this;
+        }
+
+        public abstract Product build();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", ID='" + id + '\'' +
+                ", color='" + color + '\'' +
+                ", price=" + formatToVND(price) +
+                ", stock=" + stock +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
+    public String toCSV() {
+        return name + "," + brand + "," + id + "," + color + "," + price + "," + stock + "," + status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}
+
+package factory;
+
+import entities.Charger;
+import entities.Product;
+
+import java.util.Scanner;
+
+public class ChargerFactory extends ProductFactory {
+    @Override
+    public Product createProduct(Scanner input) {
+        System.out.println("Add new Charger");
+        return new Charger.Builder()
+                .setName(promptForInput(input, "Enter name:"))
+                .setBrand(promptForInput(input, "Enter brand:"))
+                .setId(promptForInput(input, "Enter ID:"))
+                .setColor(promptForInput(input, "Enter color:"))
+                .setPrice(Integer.parseInt(promptForInput(input, "Enter price:")))
+                .setStock(Integer.parseInt(promptForInput(input, "Enter stock:")))
+                .setStatus(promptForInput(input, "Enter status:"))
+                .setCableType(promptForInput(input, "Enter cable type:"))
+                .setCableLength(promptForInput(input, "Enter cable length:"))
+                .build();
+    }
+}
+
+package factory;
+
+import entities.MobileCase;
+import entities.Product;
+
+import java.util.Scanner;
+
+public class MobileCaseFactory extends ProductFactory {
+    @Override
+    public Product createProduct(Scanner input) {
+        System.out.println("Add new MobileCase");
+        return new MobileCase.Builder()
+                .setName(promptForInput(input, "Enter name:"))
+                .setBrand(promptForInput(input, "Enter brand:"))
+                .setId(promptForInput(input, "Enter ID:"))
+                .setColor(promptForInput(input, "Enter color:"))
+                .setPrice(Integer.parseInt(promptForInput(input, "Enter price:")))
+                .setStock(Integer.parseInt(promptForInput(input, "Enter stock:")))
+                .setStatus(promptForInput(input, "Enter status:"))
+                .setUseFor(promptForInput(input, "Enter mobile suit:"))
+                .build();
+    }
+}
+
+package factory;
+
+import entities.Mobile;
+import entities.Product;
+
+import java.util.Scanner;
+
+public class MobileFactory extends ProductFactory {
+    @Override
+    public Product createProduct(Scanner input) {
+        System.out.println("Add new Mobile");
+        return new Mobile.Builder()
+                .setName(promptForInput(input, "Enter name:"))
+                .setBrand(promptForInput(input, "Enter brand:"))
+                .setId(promptForInput(input, "Enter ID:"))
+                .setColor(promptForInput(input, "Enter color:"))
+                .setPrice(Integer.parseInt(promptForInput(input, "Enter price:")))
+                .setStock(Integer.parseInt(promptForInput(input, "Enter stock:")))
+                .setStatus(promptForInput(input, "Enter status:"))
+                .setOs(promptForInput(input, "Enter OS:"))
+                .build();
+    }
+}
+
+package factory;
+
+import entities.Product;
+
+import java.util.Scanner;
+
+public abstract class ProductFactory {
+
+    public abstract Product createProduct(Scanner input);
+
+    protected String promptForInput(Scanner input, String prompt) {
+        System.out.println(prompt);
+        return input.nextLine();
+    }
+}
+
+package main;
+
+import management.ApplicationManager;
+
+public class main {
+    public static void main(String[] args) {
+        ApplicationManager.run();
+    }
+}
+
+package management;
+import service.FileService;
+
+public class ApplicationManager {
+    private static DataManagement dataManagement;
+    private static MenuManagement menuManagement;
+
+    public static void run() {
+        initialize();
+        initializeData();
+        runMainMenu();
+        saveData();
+    }
+
+    private static void initialize() {
+        dataManagement = new DataManagement();
+        menuManagement = new MenuManagement(
+                dataManagement.getCustomers(),
+                dataManagement.getMobiles(),
+                dataManagement.getChargers(),
+                dataManagement.getMobileCases()
+        );
+    }
+
+    private static void initializeData() {
+        FileService.readProductsFromCSV(
+                dataManagement.getMobiles(),
+                dataManagement.getChargers(),
+                dataManagement.getMobileCases()
+        );
+        FileService.readCustomersFromCSV(dataManagement.getCustomers());
+    }
+
+    private static void runMainMenu() {
+        menuManagement.mainMenu();
+    }
+
+    private static void saveData() {
+        FileService.writeProductsToCSV(
+                dataManagement.getMobiles(),
+                dataManagement.getChargers(),
+                dataManagement.getMobileCases()
+        );
+        FileService.writeCustomersToCSV(dataManagement.getCustomers());
+    }
+}
+
+package management;
+
+import controller.Customer;
+import entities.Charger;
+import entities.Mobile;
+import entities.MobileCase;
+
+import java.util.ArrayList;
+
+public class DataManagement {
+    private static ArrayList<Customer> customers = new ArrayList<>();
+    private static ArrayList<Mobile> mobiles = new ArrayList<>();
+    private static ArrayList<Charger> chargers = new ArrayList<>();
+    private static ArrayList<MobileCase> mobileCases = new ArrayList<>();
+
+    public static ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
+    public static ArrayList<Mobile> getMobiles() {
+        return mobiles;
+    }
+
+    public static ArrayList<Charger> getChargers() {
+        return chargers;
+    }
+
+    public static ArrayList<MobileCase> getMobileCases() {
+        return mobileCases;
+    }
+}
+
+package management;
+
+import controller.Customer;
+import entities.Charger;
+import entities.Mobile;
+import entities.MobileCase;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MenuManagement {
+    private MenuUI menuUI;
+
+    public MenuManagement(ArrayList<Customer> customers,
+                          ArrayList<Mobile> mobiles,
+                          ArrayList<Charger> chargers,
+                          ArrayList<MobileCase> mobileCases) {
+        Scanner input = new Scanner(System.in);
+        this.menuUI = new MenuUI(input, customers, mobiles, chargers, mobileCases);
+    }
+
+    public void mainMenu() {
+        menuUI.mainMenu();
+    }
+}
+
+package management;
+
+import controller.Admin;
+import controller.Customer;
+import entities.Charger;
+import entities.Mobile;
+import entities.MobileCase;
+import entities.Product;
+import service.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class MenuUI {
+    private Scanner input;
+    private ArrayList<Customer> customers;
+    private ArrayList<Mobile> mobiles;
+    private ArrayList<Charger> chargers;
+    private ArrayList<MobileCase> mobileCases;
+
+    public MenuUI(Scanner input, ArrayList<Customer> customers, ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        this.input = input;
+        this.customers = customers;
+        this.mobiles = mobiles;
+        this.chargers = chargers;
+        this.mobileCases = mobileCases;
+    }
+
+    public void mainMenu() {
+        int choice;
+        do {
+            System.out.println("Welcome to DHStore");
+            System.out.println("1. Login");
+            System.out.println("2. Register as customer");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            choice = getIntInput();
+            switch (choice) {
+                case 1:
+                    loginMenu();
+                    break;
+                case 2:
+                    register();
+                    break;
+                case 0:
+                    System.out.println("Exiting program... ");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+    }
+
+    private void loginMenu() {
+        System.out.println("Login Menu");
+        System.out.println("1. Login as customer");
+        System.out.println("2. login as admin");
+        System.out.println("0. Return");
+        System.out.print("Enter your choice: ");
+        int choice = getIntInput();
+        switch (choice) {
+            case 1:
+                customerLogin();
+                break;
+            case 2:
+                adminLogin();
+                break;
+            case 0:
+                System.out.println("Returning to main menu...");
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    private void register() {
+        System.out.println("Enter username: ");
+        String username = input.nextLine();
+        System.out.println("Enter password: ");
+        String password = input.nextLine();
+        CustomerService.addCustomer(customers, username, password);
+        System.out.println("Register successful");
+    }
+
+    private void customerLogin() {
+        System.out.print("Enter username: ");
+        String username = input.nextLine();
+        System.out.print("Enter password: ");
+        String password = input.nextLine();
+        Customer customer = CustomerService.findCustomerByUsername(customers, username);
+        if (customer != null && customer.getPassword().equals(password)) {
+            System.out.println("Login successful. Welcome " + username + "!");
+            customerMenu(customer);
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+        }
+    }
+
+    private void adminLogin() {
+        Admin admin = Admin.getInstance();
+        System.out.print("Enter admin username: ");
+        String username = input.nextLine();
+        System.out.print("Enter admin password: ");
+        String password = input.nextLine();
+        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+            System.out.println("Admin login successful. Welcome Admin!");
+            adminMenu();
+        } else {
+            System.out.println("Invalid admin user. Please try again.");
+        }
+    }
+
+    private void customerMenu(Customer customer) {
+        ArrayList<Product> cart = new ArrayList<>();
+        int choice;
+        do {
+            System.out.println("===== Customer Menu =====");
+            System.out.println("1. Show All Products");
+            System.out.println("2. Add Product to Cart");
+            System.out.println("3. Show Cart");
+            System.out.println("4. Checkout");
+            System.out.println("5. View Purchase History");
+            System.out.println("0. Logout");
+            System.out.print("Please choose an option: ");
+            choice = getIntInput();
+            switch (choice) {
+                case 1:
+                    ProductManagement.showAllProducts(mobiles, chargers, mobileCases);
+                    break;
+                case 2:
+                    CartService.addProductToCart(cart, mobiles, chargers, mobileCases, input);
+                    break;
+                case 3:
+                    CartService.showCart(cart);
+                    break;
+                case 4:
+                    CartService.checkout(cart, mobiles, chargers, mobileCases, customer, input);
+                    break;
+                case 5:
+                    viewCustomerPurchaseHistory(customer.getUsername());
+                    break;
+                case 0:
+                    System.out.println("Logging out...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+    }
+
+    private void adminMenu() {
+        int choice;
+        do {
+            System.out.println("\n Admin Menu");
+            System.out.println("1. Add new Product");
+            System.out.println("2. Delete Product");
+            System.out.println("3. Edit Product");
+            System.out.println("4. Show all Products");
+            System.out.println("5. View All Customers' Purchase History");
+            System.out.println("0. Exit");
+            choice = getIntInput();
+            switch (choice) {
+                case 1:
+                    addNewProductMenu();
+                    break;
+                case 2:
+                    ProductManagement.deleteProduct(input, mobiles, chargers, mobileCases);
+                    break;
+                case 3:
+                    ProductManagement.editProduct(input, mobiles, chargers, mobileCases);
+                    break;
+                case 4:
+                    ProductManagement.showAllProducts(mobiles, chargers, mobileCases);
+                    break;
+                case 5:
+                    viewAllCustomersPurchaseHistory();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+    }
+
+
+    void addNewProductMenu() {
+        System.out.println("Add new Product");
+        System.out.println("1. Add new Mobile");
+        System.out.println("2. Add new Charger");
+        System.out.println("3. Add new MobileCase");
+        System.out.println("0. Return");
+        int choice = getIntInput();
+
+        switch (choice) {
+            case 1:
+                MobileService.addMobile(mobiles, input);
+                break;
+            case 2:
+                ChargerService.addCharger(chargers, input);
+                break;
+            case 3:
+                MobileCaseService.addMobileCase(mobileCases, input);
+                break;
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                return;
+        }
+
+        FileService.writeProductsToCSV(mobiles, chargers, mobileCases);
+    }
+
+    private int getIntInput() {
+        try {
+            return Integer.parseInt(input.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            return -1;
+        }
+    }
+
+    private void viewCustomerPurchaseHistory(String username) {
+        Map<String, List<String>> history = PurchaseHistoryService.getCustomerPurchaseHistory(username);
+        if (history.isEmpty() || !history.containsKey(username)) {
+            System.out.println("No purchase history found for " + username);
+        } else {
+            System.out.println("===== Purchase History =====");
+            System.out.println("Name: " + username);
+            List<String> entries = history.get(username);
+            for (String entry : entries) {
+                System.out.println(entry);
+            }
+            if (history.containsKey("Total")) {
+                System.out.println("Total purchased: " + history.get("Total").get(0));
+            }
+        }
+    }
+
+    private void viewAllCustomersPurchaseHistory() {
+        Map<String, Map<String, List<String>>> allHistory = PurchaseHistoryService.getAllCustomersPurchaseHistory();
+        if (allHistory.isEmpty()) {
+            System.out.println("No purchase history found for any customer.");
+        } else {
+            System.out.println("===== All Customers' Purchase History =====");
+            for (Map.Entry<String, Map<String, List<String>>> customerEntry : allHistory.entrySet()) {
+                String username = customerEntry.getKey();
+                Map<String, List<String>> history = customerEntry.getValue();
+                System.out.println("Name: " + username);
+                List<String> entries = history.get(username);
+                for (String entry : entries) {
+                    System.out.println(entry);
+                }
+                System.out.println("Total purchased: " + history.get("Total").get(0));
+                System.out.println();
+            }
+        }
+    }
+}
+
+package management;
+
+import entities.*;
+import service.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ProductManagement {
+
+    public static void showAllProducts(ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        System.out.println("===== All Products =====");
+
+        showMobiles(mobiles);
+        showChargers(chargers);
+        showMobileCases(mobileCases);
+    }
+
+    private static void showMobiles(List<Mobile> mobiles) {
+        System.out.println("\nMobile Phones:");
+        if (mobiles.isEmpty()) {
+            System.out.println("No mobile phones available.");
+        } else {
+            String format = "| %-6s | %-30s | %-15s | %-15s | %-15s | %-8s | %-10s |";
+            System.out.println(String.format(format, "ID", "Name", "Brand", "Color", "Price", "Stock", "OS"));
+            System.out.println("-".repeat(120));
+
+            for (Mobile mobile : mobiles) {
+                System.out.println(String.format(format,
+                        mobile.getId(),
+                        truncate(mobile.getName(), 30),
+                        truncate(mobile.getBrand(), 15),
+                        truncate(mobile.getColor(), 15),
+                        CurrencyFormatter.formatToVND(mobile.getPrice()),
+                        mobile.getStock(),
+                        truncate(mobile.getOs(), 10)
+                ));
+            }
+            System.out.println("-".repeat(120));
+        }
+    }
+
+    private static void showChargers(List<Charger> chargers) {
+        System.out.println("\nChargers:");
+        if (chargers.isEmpty()) {
+            System.out.println("No chargers available.");
+        } else {
+            String format = "| %-6s | %-30s | %-15s | %-15s | %-15s | %-8s | %-15s | %-15s |";
+            System.out.println(String.format(format, "ID", "Name", "Brand", "Color", "Price", "Stock", "Cable Type", "Cable Length"));
+            System.out.println("-".repeat(140));
+
+            for (Charger charger : chargers) {
+                System.out.println(String.format(format,
+                        charger.getId(),
+                        truncate(charger.getName(), 30),
+                        truncate(charger.getBrand(), 15),
+                        truncate(charger.getColor(), 15),
+                        CurrencyFormatter.formatToVND(charger.getPrice()),
+                        charger.getStock(),
+                        truncate(charger.getCableType(), 15),
+                        truncate(charger.getCableLength(), 15)
+                ));
+            }
+            System.out.println("-".repeat(140));
+        }
+    }
+
+    private static void showMobileCases(List<MobileCase> mobileCases) {
+        System.out.println("\nMobile Cases:");
+        if (mobileCases.isEmpty()) {
+            System.out.println("No mobile cases available.");
+        } else {
+            String format = "| %-6s | %-30s | %-15s | %-15s | %-15s | %-8s | %-20s |";
+            System.out.println(String.format(format, "ID", "Name", "Brand", "Color", "Price", "Stock", "Compatible With"));
+            System.out.println("-".repeat(130));
+
+            for (MobileCase mobileCase : mobileCases) {
+                System.out.println(String.format(format,
+                        mobileCase.getId(),
+                        truncate(mobileCase.getName(), 30),
+                        truncate(mobileCase.getBrand(), 15),
+                        truncate(mobileCase.getColor(), 15),
+                        CurrencyFormatter.formatToVND(mobileCase.getPrice()),
+                        mobileCase.getStock(),
+                        truncate(mobileCase.getUseFor(), 20)
+                ));
+            }
+            System.out.println("-".repeat(130));
+        }
+    }
+
+    private static String truncate(String str, int length) {
+        return str.length() > length ? str.substring(0, length - 3) + "..." : str;
+    }
+
+    public static void editProduct(Scanner input, ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        System.out.print("Enter the ID of the product you want to edit: ");
+        String productId = input.nextLine();
+
+        Product product = findExistingProduct(productId, mobiles, chargers, mobileCases);
+
+        if (product != null) {
+            boolean updated = false;
+            if (product instanceof Mobile) {
+                updated = MobileService.editMobile((Mobile) product, input);
+            } else if (product instanceof Charger) {
+                updated = ChargerService.editCharger((Charger) product, input);
+            } else if (product instanceof MobileCase) {
+                updated = MobileCaseService.editMobileCase((MobileCase) product, input);
+            }
+
+            if (updated) {
+                System.out.println("Product updated successfully.");
+                FileService.writeProductsToCSV(mobiles, chargers, mobileCases);
+            } else {
+                System.out.println("No changes were made to the product.");
+            }
+        } else {
+            System.out.println("Product not found.");
+        }
+    }
+
+    public static void deleteProduct(Scanner input, ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        System.out.print("Enter the ID of the product you want to delete: ");
+        String productId = input.nextLine();
+
+        Product product = findExistingProduct(productId, mobiles, chargers, mobileCases);
+
+        if (product != null) {
+            if (product instanceof Mobile) {
+                mobiles.remove(product);
+            } else if (product instanceof Charger) {
+                chargers.remove(product);
+            } else if (product instanceof MobileCase) {
+                mobileCases.remove(product);
+            }
+            System.out.println("Product deleted successfully.");
+            FileService.writeProductsToCSV(mobiles, chargers, mobileCases);
+        } else {
+            System.out.println("Product not found.");
+        }
+    }
+
+    public static Product findExistingProduct(String productId, ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        for (Mobile mobile : mobiles) {
+            if (mobile.getId().equals(productId)) {
+                return mobile;
+            }
+        }
+        for (Charger charger : chargers) {
+            if (charger.getId().equals(productId)) {
+                return charger;
+            }
+        }
+        for (MobileCase mobileCase : mobileCases) {
+            if (mobileCase.getId().equals(productId)) {
+                return mobileCase;
+            }
+        }
+        return null;
+    }
+
+    private static <T extends Product> T searchInList(String searchQuery, ArrayList<T> products) {
+        for (T product : products) {
+            if (product.getId().toLowerCase().equals(searchQuery)) {
+                return product;
+            }
+        }
+        return null;
+    }
+}
+
+package service;
+
+import controller.Customer;
+import entities.Product;
+import entities.Mobile;
+import entities.Charger;
+import entities.MobileCase;
+import management.ProductManagement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CartService {
+    public static void addProductToCart(ArrayList<Product> cart,
+                                        ArrayList<Mobile> mobiles,
+                                        ArrayList<Charger> chargers,
+                                        ArrayList<MobileCase> mobileCases,
+                                        Scanner scanner)
+    {
+        System.out.print("Enter product ID to add to cart: ");
+        String productId = scanner.nextLine().trim();
+
+        Product product = ProductManagement.findExistingProduct(productId, mobiles, chargers, mobileCases);
+
+        if (product != null) {
+            try {
+                System.out.print("Enter quantity: ");
+                int quantity = Integer.parseInt(scanner.nextLine().trim());
+
+                if (quantity <= 0) {
+                    throw new IllegalArgumentException("Quantity must be greater than 0.");
+                }
+
+                if (quantity > product.getStock()) {
+                    throw new IllegalArgumentException("Not enough stock. Available: " + product.getStock());
+                }
+
+                for (int i = 0; i < quantity; i++) {
+                    cart.add(product);
+                }
+                System.out.println(quantity + " " + product.getName() + "(s) added to cart.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid quantity format. Please enter a number.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Product not found.");
+        }
+    }
+
+    public static void showCart(ArrayList<Product> cart) {
+        if (cart.isEmpty()) {
+            System.out.println("Your cart is empty.");
+        } else {
+            Map<Product, Integer> productCounts = new HashMap<>();
+            double cartTotal = 0;
+
+            for (Product product : cart) {
+                productCounts.put(product, productCounts.getOrDefault(product, 0) + 1);
+                cartTotal += product.getPrice();
+            }
+
+            for (Map.Entry<Product, Integer> entry : productCounts.entrySet()) {
+                Product product = entry.getKey();
+                int amount = entry.getValue();
+                double totalForProduct = product.getPrice() * amount;
+
+                System.out.printf("Products: %s - Price: %s - Amount: %d; Total: %s%n",
+                        product.getName(),
+                        CurrencyFormatter.formatToVND(product.getPrice()),
+                        amount,
+                        CurrencyFormatter.formatToVND(totalForProduct));
+            }
+
+            System.out.println("Cart total: " + CurrencyFormatter.formatToVND(cartTotal));
+        }
+    }
+
+    public static void checkout(ArrayList<Product> cart, ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases, Customer customer, Scanner scanner) {
+        if (cart.isEmpty()) {
+            System.out.println("Your cart is empty. Please add products to your cart before checking out.");
+            return;
+        }
+
+        System.out.println("===== Checkout =====");
+        Map<Product, Integer> productCounts = new HashMap<>();
+        double cartTotal = 0;
+
+        for (Product product : cart) {
+            productCounts.put(product, productCounts.getOrDefault(product, 0) + 1);
+            cartTotal += product.getPrice();
+        }
+
+        for (Map.Entry<Product, Integer> entry : productCounts.entrySet()) {
+            Product product = entry.getKey();
+            int amount = entry.getValue();
+            double totalForProduct = product.getPrice() * amount;
+
+            System.out.printf("Products: %s - Price: %s - Amount: %d; Total: %s%n",
+                    product.getName(),
+                    CurrencyFormatter.formatToVND(product.getPrice()),
+                    amount,
+                    CurrencyFormatter.formatToVND(totalForProduct));
+        }
+
+        System.out.println("Cart total: " + CurrencyFormatter.formatToVND(cartTotal));
+
+        System.out.print("Proceed to checkout? (yes/no): ");
+        String confirm = scanner.nextLine();
+        if (confirm.equalsIgnoreCase("yes")) {
+            for (Map.Entry<Product, Integer> entry : productCounts.entrySet()) {
+                Product cartProduct = entry.getKey();
+                int amount = entry.getValue();
+                Product stockProduct = ProductManagement.findExistingProduct(cartProduct.getId(), mobiles, chargers, mobileCases);
+                if (stockProduct != null) {
+                    stockProduct.setStock(stockProduct.getStock() - amount);
+                }
+            }
+            PurchaseHistoryService.addPurchaseToHistory(customer, new ArrayList<>(productCounts.keySet()), cartTotal);
+            System.out.println("Checkout complete. Thank you for your purchase!");
+            cart.clear();
+            FileService.writeProductsToCSV(mobiles, chargers, mobileCases);
+        } else {
+            System.out.println("Checkout canceled.");
+        }
+    }
+}
+
+package service;
+
+import entities.Charger;
+import factory.ChargerFactory;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ChargerService extends ProductService {
+    public static void addCharger(ArrayList<Charger> chargers, Scanner input) {
+        ChargerFactory factory = new ChargerFactory();
+        Charger newCharger = (Charger) factory.createProduct(input);
+        chargers.add(newCharger);
+        System.out.println("Charger added successfully.");
+    }
+
+    public static boolean editCharger(Charger charger, Scanner input) {
+        boolean updated = false;
+        while (true) {
+            System.out.println("\nEdit Charger Menu:");
+            System.out.println("1. Edit Name");
+            System.out.println("2. Edit Brand");
+            System.out.println("3. Edit ID");
+            System.out.println("4. Edit Color");
+            System.out.println("5. Edit Price");
+            System.out.println("6. Edit Stock");
+            System.out.println("7. Edit Status");
+            System.out.println("8. Edit Cable Type");
+            System.out.println("9. Edit Cable Length");
+            System.out.println("0. Finish Editing");
+            System.out.print("Enter your choice: ");
+
+            try {
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        if (editStringField("name", charger.getName(), input)) {
+                            charger.setName(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 2:
+                        if (editStringField("brand", charger.getBrand(), input)) {
+                            charger.setBrand(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 3:
+                        if (editStringField("ID", charger.getId(), input)) {
+                            charger.setId(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 4:
+                        if (editStringField("color", charger.getColor(), input)) {
+                            charger.setColor(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 5:
+                        if (editIntField("price", charger.getPrice(), input)) {
+                            charger.setPrice(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 6:
+                        if (editIntField("stock", charger.getStock(), input)) {
+                            charger.setStock(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 7:
+                        if (editStringField("status", charger.getStatus(), input)) {
+                            charger.setStatus(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 8:
+                        if (editStringField("cable type", charger.getCableType(), input)) {
+                            charger.setCableType(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 9:
+                        if (editStringField("cable length", charger.getCableLength(), input)) {
+                            charger.setCableLength(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 0:
+                        return updated;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+    }
+}
+
+package service;
+
+import java.text.DecimalFormat;
+
+public class CurrencyFormatter {
+
+
+        private static final DecimalFormat VND_FORMATTER = new DecimalFormat("###,###,### VNĐ");
+
+        public static String formatToVND(double amount) {
+            return VND_FORMATTER.format(amount);
+        }
+
+
+}
+
+
+package service;
+
+import controller.Customer;
+import java.util.ArrayList;
+
+public class CustomerService {
+
+    public static void addCustomer(ArrayList<Customer> customers, String username, String password) {
+        customers.add(new Customer(username, password));
+        FileService.writeCustomersToCSV(customers);
+    }
+
+    public static Customer findCustomerByUsername(ArrayList<Customer> customers, String username) {
+        for (Customer customer : customers) {
+            if (customer.getUsername().equals(username)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+}
+
+package service;
+
+import controller.Customer;
+import entities.Mobile;
+import entities.Charger;
+import entities.MobileCase;
+import java.io.*;
+import java.util.ArrayList;
+
+public class FileService {
+    private static final String CSV_FILE_PATH = "products.csv";
+    private static final String CUSTOMERS_CSV_FILE_PATH = "customers.csv";
+
+    public static void readProductsFromCSV(ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        mobiles.clear();
+        chargers.clear();
+        mobileCases.clear();
+        try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE_PATH))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String type = values[0];
+                switch (type) {
+                    case "Mobile":
+                        mobiles.add(new Mobile.Builder()
+                                .setName(values[1])
+                                .setBrand(values[2])
+                                .setId(values[3])
+                                .setColor(values[4])
+                                .setPrice(Integer.parseInt(values[5]))
+                                .setStock(Integer.parseInt(values[6]))
+                                .setStatus(values[7])
+                                .setOs(values[8])
+                                .build());
+                        break;
+                    case "Charger":
+                        chargers.add(new Charger.Builder()
+                                .setName(values[1])
+                                .setBrand(values[2])
+                                .setId(values[3])
+                                .setColor(values[4])
+                                .setPrice(Integer.parseInt(values[5]))
+                                .setStock(Integer.parseInt(values[6]))
+                                .setStatus(values[7])
+                                .setCableType(values[8])
+                                .setCableLength(values[9])
+                                .build());
+                        break;
+                    case "MobileCase":
+                        mobileCases.add(new MobileCase.Builder()
+                                .setName(values[1])
+                                .setBrand(values[2])
+                                .setId(values[3])
+                                .setColor(values[4])
+                                .setPrice(Integer.parseInt(values[5]))
+                                .setStock(Integer.parseInt(values[6]))
+                                .setStatus(values[7])
+                                .setUseFor(values[8])
+                                .build());
+                        break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No existing products data found. Starting with an empty product list.");
+        }
+    }
+
+    public static void writeProductsToCSV(ArrayList<Mobile> mobiles, ArrayList<Charger> chargers, ArrayList<MobileCase> mobileCases) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH))) {
+            for (Mobile mobile : mobiles) {
+                bw.write("Mobile," + mobile.toCSV());
+                bw.newLine();
+            }
+            for (Charger charger : chargers) {
+                bw.write("Charger," + charger.toCSV());
+                bw.newLine();
+            }
+            for (MobileCase mobileCase : mobileCases) {
+                bw.write("MobileCase," + mobileCase.toCSV());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readCustomersFromCSV(ArrayList<Customer> customers) {
+        customers.clear();
+        try (BufferedReader br = new BufferedReader(new FileReader(CUSTOMERS_CSV_FILE_PATH))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                customers.add(new Customer(values[0], values[1]));
+            }
+        } catch (IOException e) {
+            System.out.println("No existing customers data found. Starting with an empty customer list.");
+        }
+    }
+
+    public static void writeCustomersToCSV(ArrayList<Customer> customers) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CUSTOMERS_CSV_FILE_PATH))) {
+            for (Customer customer : customers) {
+                bw.write(customer.getUsername() + "," + customer.getPassword());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+package service;
+
+import entities.MobileCase;
+import factory.MobileCaseFactory;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MobileCaseService extends ProductService {
+    public static void addMobileCase(ArrayList<MobileCase> mobileCases, Scanner input) {
+        MobileCaseFactory factory = new MobileCaseFactory();
+        MobileCase newMobileCase = (MobileCase) factory.createProduct(input);
+        mobileCases.add(newMobileCase);
+        System.out.println("Mobile Case added successfully.");
+    }
+
+    public static boolean editMobileCase(MobileCase mobileCase, Scanner input) {
+        boolean updated = false;
+        while (true) {
+            System.out.println("\nEdit Mobile Case Menu:");
+            System.out.println("1. Edit Name");
+            System.out.println("2. Edit Brand");
+            System.out.println("3. Edit ID");
+            System.out.println("4. Edit Color");
+            System.out.println("5. Edit Price");
+            System.out.println("6. Edit Stock");
+            System.out.println("7. Edit Status");
+            System.out.println("8. Edit Use For");
+            System.out.println("0. Finish Editing");
+            System.out.print("Enter your choice: ");
+
+            try {
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        if (editStringField("name", mobileCase.getName(), input)) {
+                            mobileCase.setName(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 2:
+                        if (editStringField("brand", mobileCase.getBrand(), input)) {
+                            mobileCase.setBrand(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 3:
+                        if (editStringField("ID", mobileCase.getId(), input)) {
+                            mobileCase.setId(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 4:
+                        if (editStringField("color", mobileCase.getColor(), input)) {
+                            mobileCase.setColor(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 5:
+                        if (editIntField("price", mobileCase.getPrice(), input)) {
+                            mobileCase.setPrice(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 6:
+                        if (editIntField("stock", mobileCase.getStock(), input)) {
+                            mobileCase.setStock(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 7:
+                        if (editStringField("status", mobileCase.getStatus(), input)) {
+                            mobileCase.setStatus(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 8:
+                        if (editStringField("use for", mobileCase.getUseFor(), input)) {
+                            mobileCase.setUseFor(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 0:
+                        return updated;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+    }
+}
+
+package service;
+
+import entities.Mobile;
+import factory.MobileFactory;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MobileService extends ProductService {
+    public static void addMobile(ArrayList<Mobile> mobiles, Scanner input) {
+        MobileFactory factory = new MobileFactory();
+        Mobile newMobile = (Mobile) factory.createProduct(input);
+        mobiles.add(newMobile);
+        System.out.println("Mobile added successfully.");
+    }
+
+    public static boolean editMobile(Mobile mobile, Scanner input) {
+        boolean updated = false;
+        while (true) {
+            System.out.println("\nEdit Mobile Menu:");
+            System.out.println("1. Edit Name");
+            System.out.println("2. Edit Brand");
+            System.out.println("3. Edit ID");
+            System.out.println("4. Edit Color");
+            System.out.println("5. Edit Price");
+            System.out.println("6. Edit Stock");
+            System.out.println("7. Edit Status");
+            System.out.println("8. Edit OS");
+            System.out.println("0. Finish Editing");
+            System.out.print("Enter your choice: ");
+
+            try {
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        if (ProductService.editStringField("name", mobile.getName(), input)) {
+                            mobile.setName(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 2:
+                        if (ProductService.editStringField("brand", mobile.getBrand(), input)) {
+                            mobile.setBrand(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 3:
+                        if (ProductService.editStringField("ID", mobile.getId(), input)) {
+                            mobile.setId(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 4:
+                        if (ProductService.editStringField("color", mobile.getColor(), input)) {
+                            mobile.setColor(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 5:
+                        if (ProductService.editIntField("price", mobile.getPrice(), input)) {
+                            mobile.setPrice(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 6:
+                        if (ProductService.editIntField("stock", mobile.getStock(), input)) {
+                            mobile.setStock(Integer.parseInt(input.nextLine().trim()));
+                            updated = true;
+                        }
+                        break;
+                    case 7:
+                        if (ProductService.editStringField("status", mobile.getStatus(), input)) {
+                            mobile.setStatus(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 8:
+                        if (ProductService.editStringField("OS", mobile.getOs(), input)) {
+                            mobile.setOs(input.nextLine().trim());
+                            updated = true;
+                        }
+                        break;
+                    case 0:
+                        return updated;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+    }
+}
+
+package service;
+
+import java.util.Scanner;
+
+public class ProductService {
+    protected static boolean editStringField(String fieldName, String currentValue, Scanner input) {
+        System.out.print("Enter new " + fieldName + " (or press Enter to skip): ");
+        String newValue = input.nextLine().trim();
+        if (!newValue.isEmpty() && !newValue.equals(currentValue)) {
+            System.out.println(fieldName + " updated successfully.");
+            return true;
+        }
+        return false;
+    }
+
+    protected static boolean editIntField(String fieldName, int currentValue, Scanner input) {
+        System.out.print("Enter new " + fieldName + " (or press Enter to skip): ");
+        String newValue = input.nextLine().trim();
+        if (!newValue.isEmpty()) {
+            try {
+                int intValue = Integer.parseInt(newValue);
+                if (intValue != currentValue) {
+                    System.out.println(fieldName + " updated successfully.");
+                    return true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+        return false;
+    }
+}
+
+package service;
+
+import controller.Customer;
+import entities.Product;
+
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+public class PurchaseHistoryService {
+    private static final String PURCHASE_HISTORY_FILE = "purchase_history.csv";
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public static void addPurchaseToHistory(Customer customer, List<Product> products, double totalAmount) {
+        LocalDateTime purchaseDate = LocalDateTime.now();
+        StringBuilder purchaseRecord = new StringBuilder();
+        purchaseRecord.append(String.format("%s,%s,", customer.getUsername(), purchaseDate.format(DATE_FORMATTER)));
+
+        Map<Product, Integer> productCounts = new HashMap<>();
+        for (Product product : products) {
+            productCounts.put(product, productCounts.getOrDefault(product, 0) + 1);
+        }
+
+        for (Map.Entry<Product, Integer> entry : productCounts.entrySet()) {
+            Product product = entry.getKey();
+            int count = entry.getValue();
+            purchaseRecord.append(String.format("%s:%d:%d;", product.getName(), product.getPrice(), count));
+        }
+        purchaseRecord.append(String.format(",%.2f", totalAmount));
+
+        try (FileWriter fw = new FileWriter(PURCHASE_HISTORY_FILE, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.println(purchaseRecord);
+        } catch (IOException e) {
+            System.out.println("Error writing to purchase history file: " + e.getMessage());
+        }
+    }
+
+    public static Map<String, List<String>> getCustomerPurchaseHistory(String username) {
+        Map<String, List<String>> history = new LinkedHashMap<>();
+        double totalPurchased = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(PURCHASE_HISTORY_FILE))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 2 && parts[0].equals(username)) {
+                    String date = parts[1];
+                    StringBuilder entry = new StringBuilder();
+                    entry.append(String.format("Date: %s - Products: ", date));
+
+                    double total = 0;
+                    if (parts.length >= 3) {
+                        String[] products = parts[2].split(";");
+                        for (String product : products) {
+                            String[] productInfo = product.split(":");
+                            if (productInfo.length >= 3) {
+                                entry.append(String.format("%s - Price: %s - Amount: %s; ",
+                                        productInfo[0],
+                                        CurrencyFormatter.formatToVND(Double.parseDouble(productInfo[1])),
+                                        productInfo[2]));
+                            }
+                        }
+                    }
+
+                    if (parts.length >= 4) {
+                        total = Double.parseDouble(parts[3]);
+                    }
+
+                    totalPurchased += total;
+                    entry.append(String.format("Total: %s", CurrencyFormatter.formatToVND(total)));
+
+                    history.computeIfAbsent(username, k -> new ArrayList<>()).add(entry.toString());
+                }
+            }
+            history.put("Total", Collections.singletonList(CurrencyFormatter.formatToVND(totalPurchased)));
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error reading purchase history file: " + e.getMessage());
+        }
+        return history;
+    }
+
+    public static Map<String, Map<String, List<String>>> getAllCustomersPurchaseHistory() {
+        Map<String, Map<String, List<String>>> allHistory = new LinkedHashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(PURCHASE_HISTORY_FILE))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",", 4);
+                String username = parts[0];
+                allHistory.putIfAbsent(username, getCustomerPurchaseHistory(username));
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading purchase history file: " + e.getMessage());
+        }
+        return allHistory;
+    }
+}
+
