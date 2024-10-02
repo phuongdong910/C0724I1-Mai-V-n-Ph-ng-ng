@@ -1,0 +1,10 @@
+Hello my boy
+Data: 
+3.14Hello my boy
+Data: 
+3.14Hello my boy
+Data: 
+3.14Hello my boy
+Data: 
+3.14
+Product{name='Equipment', price=1579.1}

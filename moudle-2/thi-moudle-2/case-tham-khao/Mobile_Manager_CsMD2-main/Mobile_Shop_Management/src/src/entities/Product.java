@@ -14,13 +14,13 @@ public abstract class Product {
     private String status;
 
     protected Product(Builder<?> builder) {
-        this.name = builder.name;
-        this.brand = builder.brand;
-        this.id = builder.id;
-        this.color = builder.color;
-        this.price = builder.price;
-        this.stock = builder.stock;
-        this.status = builder.status;
+            this.name = builder.name;
+            this.brand = builder.brand;
+            this.id = builder.id;
+            this.color = builder.color;
+            this.price = builder.price;
+            this.stock = builder.stock;
+            this.status = builder.status;
     }
 
     public String getName() {

@@ -1,23 +1,15 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        List<String> course = new ArrayList<String>();
-        course.add("Java");
-        course.add("Python");
-        course.add(".Net");
-        course.add("PHP");
-        System.out.println("Current course list: " + course);
+       Map<String, Double> laptopMaps = new HashMap<String, Double >();
 
-        String [] newCourse = {"Javascript", "ReactJS"};
+       laptopMaps.put("Dell", 15000.0);
+       laptopMaps.put("Asus", 17000.0);
+       laptopMaps.put("HP", 15750.0);
+       laptopMaps.put("Lenovo", 25000.0);
 
-        Collections.addAll(course, newCourse);
-        System.out.println("Course list after addAll: " + course);
-
-
+        System.out.println("Tập hợp các loại laptop  là: " + laptopMaps.toString());
 
     }
 }

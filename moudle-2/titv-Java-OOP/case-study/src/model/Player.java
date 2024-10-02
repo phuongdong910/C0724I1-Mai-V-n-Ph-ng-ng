@@ -1,13 +1,18 @@
 package model;
 
-public class  Player extends  Member{
+public class Player extends Member{
     private int number;
     private String role;
     private int goals;
 
-    public Player(int number, String role, int goals) {
-        this.number = number;
-        this.role = role;
-        this.goals = goals;
+    public Player(String name, int age, String position) {
+        super(name, age, position);
+        this.
+    }
+
+
+    @Override
+    public void displayInfo() {
+
     }
 }
