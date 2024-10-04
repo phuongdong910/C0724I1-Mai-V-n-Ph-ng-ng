@@ -74,6 +74,8 @@ public abstract class Product {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
     // Getters and setters...
 
     public abstract static class Builder<T extends Builder<T>> {
@@ -133,5 +135,8 @@ public abstract class Product {
                 ", stock=" + stock +
                 ", status=" + status +
                 '}';
+    }
+    public String toCSV() {
+        return  name + "," + brand + "," + id + "," + color + "," + price + "," + stock + "," + status;
     }
 }

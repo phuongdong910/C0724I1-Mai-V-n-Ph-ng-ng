@@ -189,7 +189,7 @@ public class MenuUI {
     }
 
 
-    void addNewProductMenu() {
+    private void addNewProductMenu() {
         System.out.println("Add new Product");
         System.out.println("1. Add new Mobile");
         System.out.println("2. Add new Charger");

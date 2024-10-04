@@ -70,4 +70,7 @@ public class Shoes extends Product {
                 ", soleMaterial='" + soleMaterial + '\'' +
                 '}';
     }
+    @Override
+    public String toCSV() { return super.toCSV() + "," + size + "," + style + "," + soleMaterial;
+    }
 }

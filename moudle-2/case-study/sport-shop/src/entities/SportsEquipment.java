@@ -104,4 +104,9 @@ public class SportsEquipment extends Product {
                 ", weight=" + weight +
                 '}';
     }
+
+    @Override
+    public String toCSV() { return super.toCSV() + "," + equipmentType + "," + size + "," + material + "," + purpose + "," + weight;
+    }
+
 }

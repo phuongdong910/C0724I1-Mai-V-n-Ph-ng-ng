@@ -71,4 +71,8 @@ public class Shirts extends Product {
                 ", type='" + type + '\'' +
                 '}';
     }
+    @Override
+    public String toCSV() { return super.toCSV() + "," + size + "," + fabric + "," + type;
+    }
+
 }
