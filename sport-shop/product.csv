@@ -1,0 +1,20 @@
+Shirts,T-shirt ARMANI EXCHANGE,ARMANI EXCHANGE,01,Black,3000000,5,IsAvailable,M->XL,M,null
+Shirts,Adidas Shirt,Adidas,10,Pink,1200000,20,null,null,null,null
+Shirts,Hoodie Basketball,Adidas,33,Black / Red,1500000,13,null,null,null,null
+Shirts,T-Shirt Nike,Nike,33,,1000000,7,null,null,null,null
+Shirts,Polo-Nike,Nike,108,Blue,800000,10,M-->XL,Polyester,M-XXL,Isavailable
+Shirts,Polo-Pumaaa,Puma,121,Green,890000,10,Trainning,Isavailable,M,Polyester
+Shirts,Polo-Adidas,Adidas,199,White,1200000,10,Cotton,Trainning,Isavailable,M
+Shirts,Trainning-Adidas,Adidas,133,Yellow,900000,15,Isavailable,M,Polyester,Trainning
+Shirts,Shirt-H&M,H&M,333,White,650000,12,Isavailable,L,Cotton,Trainning
+Pants,Short Domyos,DOMYOS,04,White,300000,20,null,null,null,null
+Pants,Future Icons,Adidas,99, Green Spark,888888,25,null,null,null,null
+Pants,Short-Puma,Puma,109,Black,700000,7,IsAvailable,S->XL,Polyester,null
+Shoes,Nike Jordan,Nike,05,Gray,10000000,18,IsAvailable,40,free,Rubber
+Shoes,ADIZERO ADIOS PRO 4,Adidas,35,Cloud White,3400000,9,IsAvailable,38,racing shoes,Lightstrike
+SportsEquipment,Bag Shoes Pro,Adidas,71,Gray,350000,8,IsAvailable,Shoes bag,Polyester,M-->XL,SHoe bag,0.2
+SportsEquipment,Trail Terrex AEROREADY ,AEROREADY,39,Green,700000,15,IsAvailable,Running Belt,Polyester,M,Storage,0.2
+SportsEquipment,Straight Bow ,Recurve,72,Gray,3300000,4,IsAvailable,Bow,XL,Al,Trainning,1.75
+SportsEquipment,BT100 Touch Cam,TARMAK,93,Orange,350000,4,ISavailable,Basketball ball,rubber,7,Trainning,0.5
+SportsEquipment,Pump ball Essential,Essential,100,Orange,145000,7,Isavailable,Pump Ball,free,Plastic,Pump ball ball,0.3
+SportsEquipment,Ball Adidas,Adidas,105,Green White,1500000,10,Isavailable,Football ball,8,Rubber,Ball,0.6
