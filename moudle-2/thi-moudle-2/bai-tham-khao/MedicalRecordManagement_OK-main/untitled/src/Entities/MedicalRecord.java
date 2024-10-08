@@ -13,6 +13,7 @@ public abstract class MedicalRecord {
         this.oder = oder;
         this.recordId = recordId;
         this.patientId = patientId;
+
         this.patientName = patientName;
         this.hospitalizationDate = hospitalizationDate;
         this.hospitalDischargeDate = hospitalDischargeDate;
