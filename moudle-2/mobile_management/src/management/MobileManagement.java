@@ -46,7 +46,6 @@ public class MobileManagement {
             }
         }
 
-        // Kiểm tra số lượng
         System.out.print("Enter Quantity: ");
         int quantity;
         while (true) {
@@ -96,11 +95,9 @@ public class MobileManagement {
                 importCountry = scanner.nextLine().trim();
             }
 
-            // Cập nhật trạng thái sửa chữa
             System.out.print("Enter Status (repaired/not repaired): ");
             String status = scanner.nextLine().trim();
 
-            // Kiểm tra trạng thái
             while (!status.equalsIgnoreCase("repaired") && !status.equalsIgnoreCase("not repaired")) {
                 System.out.println("Status must be 'repaired' or 'not repaired'. Please enter again: ");
                 status = scanner.nextLine().trim();
@@ -110,7 +107,6 @@ public class MobileManagement {
             mobiles.add(importedMobile);
         }
 
-        // Ghi dữ liệu vào file
         FileService.writeMobilesToCSV(mobiles, FILE_PATH);
         System.out.println("Mobile added successfully.");
     }
@@ -118,16 +114,36 @@ public class MobileManagement {
 
     public void deleteMobile(Scanner scanner) {
         System.out.print("Enter ID of the mobile to delete: ");
-        String id = scanner.nextLine();
+        String id = scanner.nextLine().trim();
 
-        boolean removed = mobiles.removeIf(mobile -> mobile.getId().equalsIgnoreCase(id));
-        if (removed) {
-            FileService.writeMobilesToCSV(mobiles, FILE_PATH);
-            System.out.println("Mobile deleted successfully.");
+        Mobile mobileToRemove = mobiles.stream()
+                .filter(mobile -> mobile.getId().equalsIgnoreCase(id))
+                .findFirst()
+                .orElse(null);
+
+        if (mobileToRemove != null) {
+            System.out.print("Are you sure you want to delete this mobile? (Yes/No): ");
+            String confirmation = scanner.nextLine().trim();
+
+            if (confirmation.equalsIgnoreCase("Yes")) {
+                mobiles.remove(mobileToRemove);
+                FileService.writeMobilesToCSV(mobiles, FILE_PATH);
+                System.out.println("Mobile deleted successfully.");
+
+                System.out.println("Updated Mobile List:");
+                for (Mobile mobile : mobiles) {
+                    System.out.println(mobile);
+                }
+            } else if (confirmation.equalsIgnoreCase("No")) {
+                System.out.println("Deletion cancelled. Returning to main menu.");
+            } else {
+                System.out.println("Invalid input. Please enter 'Yes' or 'No'.");
+            }
         } else {
-            System.out.println("Mobile not found.");
+            System.out.println("Phone ID does not exist. Please enter a valid ID.");
         }
     }
+
 
     public void viewAllMobiles() {
         System.out.println("======= Mobile List =======");
