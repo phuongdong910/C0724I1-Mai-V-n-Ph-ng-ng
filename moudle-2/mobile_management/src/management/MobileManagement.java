@@ -30,7 +30,6 @@ public class MobileManagement {
         System.out.print("Enter Name: ");
         String name = scanner.nextLine().trim();
 
-        // Kiểm tra giá bán
         System.out.print("Enter Price: ");
         double price;
         while (true) {
@@ -156,14 +155,13 @@ public class MobileManagement {
         System.out.print("Enter mobile ID or name to search: ");
         String searchTerm = scanner.nextLine();
 
-        boolean found = false; // Biến để kiểm tra xem có tìm thấy điện thoại hay không
+        boolean found = false;
 
         for (Mobile mobile : mobiles) {
-            // Sử dụng contains để kiểm tra xem searchTerm có nằm trong ID hoặc Name hay không
             if (mobile.getId().toLowerCase().contains(searchTerm.toLowerCase()) ||
                     mobile.getName().toLowerCase().contains(searchTerm.toLowerCase())) {
                 System.out.println(mobile);
-                found = true; // Đánh dấu là đã tìm thấy
+                found = true;
             }
         }
 

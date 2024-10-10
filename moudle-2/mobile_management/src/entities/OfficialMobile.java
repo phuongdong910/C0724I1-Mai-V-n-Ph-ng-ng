@@ -11,7 +11,6 @@ public class OfficialMobile extends Mobile {
         this.warrantyScope = warrantyScope;
     }
 
-    // Getters and Setters
     public int getWarrantyPeriod() {
         return warrantyPeriod;
     }

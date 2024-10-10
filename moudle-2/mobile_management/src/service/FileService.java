@@ -24,8 +24,7 @@ public class FileService {
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(","); // Tách các trường bằng dấu phẩy
 
-                // Kiểm tra số lượng trường
-                if (fields.length < 6) continue; // Bỏ qua nếu không đủ trường
+                if (fields.length < 6) continue;
 
                 String id = fields[0].trim();
                 String name = fields[1].trim();
@@ -66,7 +65,6 @@ public class FileService {
         }
     }
 
-    // Phương thức kiểm tra xem chuỗi có phải là số hay không
     private static boolean isNumeric(String str) {
         if (str == null || str.isEmpty()) {
             return false;

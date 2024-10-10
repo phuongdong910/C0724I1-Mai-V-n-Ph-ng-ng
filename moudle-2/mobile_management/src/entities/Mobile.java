@@ -15,7 +15,6 @@ public abstract class Mobile {
         this.manufacturer = manufacturer;
     }
 
-    // Getters and Setters
     public String getId() {
         return id;
     }

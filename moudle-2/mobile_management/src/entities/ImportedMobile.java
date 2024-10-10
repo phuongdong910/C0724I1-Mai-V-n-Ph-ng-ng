@@ -11,7 +11,6 @@ public class ImportedMobile extends Mobile {
         this.status = status;
     }
 
-    // Getters and Setters
     public String getImportCountry() {
         return importCountry;
     }
