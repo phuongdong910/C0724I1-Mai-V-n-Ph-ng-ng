@@ -39,7 +39,7 @@ public class RoomServlet extends HttpServlet {
         // Đưa dữ liệu vào request để forward đến view
         request.setAttribute("rooms", rooms);
         request.setAttribute("paymentTypes", paymentTypes);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/views/roomList.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/roomList.jsp");
         requestDispatcher.forward(request, response);
     }
 
