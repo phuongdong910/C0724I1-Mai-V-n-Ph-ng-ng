@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+<body>
+<div id="container" class=" flex flex-col h-screen border-solid border border-blue-500     ">
+    <div id="main" class=" border-solid border h-5/6 flex ">
+        <div id="task-bar"
+             class="flex flex-col h-full w-1/6 border border-solid border-blue-500 bg-[#48D9BF] justify-between">
+            <div class="h-1/6 flex justify-center items-center">
+                <a href="https://zingmp3.vn/">
+                    <img class="title"
+                         src="https://cdn.tgdd.vn/hoi-dap/564322/Thumbnail/h%C3%ACnh-n%E1%BB%81n-zing-mp3%20(1).jpg"
+                         alt="">
+                </a>
+            </div>
+
+            <div class="h-2/6 flex flex-col justify-center items-start text-center space-y-4 ml-20">
+                <div><i class="fa-solid fa-book"></i>
+                    <span class=" ml-[4]">Thư viện</span></div>
+                <div>
+                    <i class="fa-solid fa-bullseye"></i><span class="ml-px">Khám phá</span></div>
+                <div><i class="fa-solid fa-chart-line"></i><span class="ml-px">#zingchart</span></div>
+                <div><i class="fa-solid fa-radio"></i><span>Radio</span></div>
+            </div>
+            <hr class="w-full border-gray-300 h-1/6">
+
+            <div class="h-2/6 flex flex-col justify-center items-start text-center space-y-4 mx-20 ">
+                <div class="text-blue"><i class="fa-solid fa-music " ></i><span>BXH Nhạc Mới</span></div>
+                <div><span><i class="fa-solid fa-shapes"></i>Chủ Đề & Thể Loại</span></div>
+                <div><i class="fa-solid fa-star"></i><span>Top 100</span></div>
+
+            </div>
+            <hr class="w-full border-gray-300">
+
+
+            <div class="h-1/6 flex justify-center items-center">
+
+                <button class="bg-blue-500 text-white px-4 py-2 rounded">Đăng Nhập</button>
+            </div>
+        </div>
+
+        <div id="content" class=" flex-col justify-between w-5/6  h-screen border border-solid  bg-[#609EFC]">
+            <div id="menu" class="h-[70px] flex  items-center justify-between bg-[#0277E0]">
+                <div class="w-1/6 text-black flex gap-5 p-4">
+                    <button><i class="fa-solid fa-arrow-left"></i></button>
+                    <button><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="w-1/6 flex items-center">
+                    <label for="search" class="flex items-center">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="rounded-full w-30 ml-2" id="search">
+                    </label>
+                </div>
+                <div class="w-2/6 flex items-center justify-center gap-5 ml-20">
+                    <a href="https://zingmp3.vn/vip/upgrade?src_vip=114"
+                       class="border rounded-full bg-[white] text-black p-1">Nâng cấp tài khoản</a>
+                    <a href="https://zingmp3.vn/vip/upgrade?src_vip=114"
+                       class="border rounded-full bg-[white] text-black p-1">Tải bản Windows</a>
+                </div>
+                <div class="w-2/6 flex items-center gap-5 justify-end">
+                    <span id="setting"
+                          class="border border-solid  rounded-full w-10 h-10 flex bg-[white] items-center justify-center cursor-pointer "><i
+                            class="fa-solid fa-gear"></i></span>
+                    <span id="user"
+                          class="border border-solid  rounded-full w-10 h-10 flex bg-[white] items-center justify-center cursor-pointer"><i
+                            class="fa-solid fa-user"></i></span>
+                </div>
+            </div>
+
+            <div id="main-content" class="h-5/6 flex-cow h-screen">
+                <div class=" flex justify-between mx-20 my-10 ">
+                    <div>
+                        <a href="https://zingmp3.vn/album/Anh-Trai-Say-Hi-Concert-2024-ANH-TRAI-SAY-HI-HIEUTHUHAI-Rhyder-Quang-Hung-MasterD/6C6OIZD0.html"><img
+                                src="https://i.ibb.co/nPz7f1w/bruno-atp.jpg" alt="bruno-atp" border="0"></a>
+                    </div>
+                    <div>
+                        <a href="https://zingmp3.vn/album/Anh-Trai-Vuot-Ngan-Chong-Gai-Concert-2024-Anh-Trai-Vuot-Ngan-Chong-Gai-2024-SOOBIN-Rhymastic-Bui-Cong-Nam-Binz/6C6OI6U7.html"><img
+                                src="https://i.ibb.co/P5tYHdG/ch-ng-gai.jpg" alt="ch-ng-gai" border="0"></a></div>
+                    <div><a href="https://zingmp3.vn/playlist/Today-s-K-Pop-Hits/ZWZCOE6B.html"><img
+                            src="https://i.ibb.co/jyZC4yc/images.jpg" alt="images" border="0"></a></div>
+                </div>
+                <div>
+                    <h2 class="ml-20 text-2xl">Bắt đầu nghe từ một bài hát</h2>
+                    <h1 class="ml-20 text-3xl">Gợi ý dành riêng cho bạn</h1>
+                </div>
+                <div class="mx-20 my-10  ">
+                    <section class="flex justify-between items-center">
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://i.ibb.co/FH22C84/gac-lai-au-lo.jpg" alt="gac-lai-au-lo" border="0"
+                                 class="w-20 h-20">
+                            <div class="card-body">
+                                <h2 class="text-white text-1xl">Gác lại âu lo</h2>
+                                <h2>Da lab, Miu Lê</h2>
+                            </div>
+                        </div>
+
+
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class=" h-1/6 bg-[#4895D9] border border-solid">
+
+    </div>
+
+</div>
+</body>
+</html>
