@@ -5,6 +5,7 @@ import com.example.thimoudle3.dao.PaymentTypeDAO;
 import com.example.thimoudle3.model.entity.Room;
 import com.example.thimoudle3.model.entity.PaymentType;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,8 @@ public class RoomServlet extends HttpServlet {
         // Đưa dữ liệu vào request để forward đến view
         request.setAttribute("rooms", rooms);
         request.setAttribute("paymentTypes", paymentTypes);
-        request.getRequestDispatcher("/WEB-INF/views/roomList.jsp").forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/views/roomList.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override

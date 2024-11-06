@@ -24,7 +24,7 @@ public class PaymentTypeDAO {
 
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
-                    String type = resultSet.getString("type");
+                    String type = resultSet.getString("typeName");
                     paymentTypes.add(new PaymentType(id, type));
                 }
             } catch (SQLException e) {
